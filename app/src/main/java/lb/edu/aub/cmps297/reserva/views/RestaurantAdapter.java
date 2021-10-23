@@ -1,9 +1,12 @@
 package lb.edu.aub.cmps297.reserva.views;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,8 +26,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         this.context = context;
         this.restaurantsModelArrayList = restaurantsModelArrayList;
     }
-
-
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +39,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         Restaurant restaurant = restaurantsModelArrayList.get(position);
         holder.restaurantName.setText(restaurant.getName());
         holder.restaurantImg.setImageResource(restaurant.getImg());
+        holder.favButton.setImageResource(restaurant.isFav() ? R.drawable.black_favorite : R.drawable.white_favorite);
+        holder.favButton.setOnClickListener(v -> {
+            if(restaurant.isFav()) {
+                restaurant.setFav(false);
+                holder.favButton.setImageResource(R.drawable.white_favorite);
+            } else {
+                restaurant.setFav(true);
+                holder.favButton.setImageResource(R.drawable.black_favorite);
+            }
+        });
     }
 
     @Override
@@ -46,12 +57,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     }
 
     public static class Viewholder extends RecyclerView.ViewHolder {
+        private ImageButton favButton;
         private ImageView restaurantImg;
         private TextView restaurantName;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             restaurantImg = itemView.findViewById(R.id.idRestaurantImg);
             restaurantName = itemView.findViewById(R.id.idRestaurantName);
+            favButton = itemView.findViewById(R.id.btnFavorite);
+            itemView.setOnClickListener(v -> {
+
+            });
         }
     }
 }

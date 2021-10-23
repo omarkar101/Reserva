@@ -7,6 +7,7 @@ public class Restaurant {
     private String description;
     private String location;
     private int img;
+    private boolean isFav;
 
     public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img) {
         this.name = name;
@@ -15,6 +16,17 @@ public class Restaurant {
         this.description = description;
         this.location = location;
         this.img = img;
+        this.isFav = false;
+    }
+
+    public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img, boolean isFav) {
+        this.name = name;
+        this.cellPhone = cellPhone;
+        this.numSeats = numSeats;
+        this.description = description;
+        this.location = location;
+        this.img = img;
+        this.isFav = isFav;
     }
 
     public String getName() {
@@ -63,5 +75,13 @@ public class Restaurant {
 
     public void setImg(int img) {
         this.img = img;
+    }
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
     }
 }
