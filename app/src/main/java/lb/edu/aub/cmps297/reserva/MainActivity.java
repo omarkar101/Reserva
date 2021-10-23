@@ -9,13 +9,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.databinding.ActivityMainBinding;
+import lb.edu.aub.cmps297.reserva.models.Restaurant;
 
 public class MainActivity extends AppCompatActivity {
-
     private ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
