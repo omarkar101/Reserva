@@ -65,9 +65,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             restaurantImg = itemView.findViewById(R.id.idRestaurantImg);
             restaurantName = itemView.findViewById(R.id.idRestaurantName);
             favButton = itemView.findViewById(R.id.btnFavorite);
-            itemView.setOnClickListener(v -> {
-
-            });
         }
     }
 }

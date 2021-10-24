@@ -4,28 +4,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentHomeBinding;
-import lb.edu.aub.cmps297.reserva.models.Restaurant;
+import lb.edu.aub.cmps297.reserva.ui.favorites.FavoritesFragment;
 import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private RecyclerView restaurantRV;
+//    private Fragment fragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,8 +31,14 @@ public class HomeFragment extends Fragment {
         restaurantRV = root.findViewById(R.id.idRVRestaurant);
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), StaticStorage.restaurants);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
-        restaurantRV.setLayoutManager(linearLayoutManager);
-        restaurantRV.setAdapter(restaurantAdapter);
+//        restaurantRV.setLayoutManager(linearLayoutManager);
+//        restaurantRV.setAdapter(restaurantAdapter);
+//
+//        restaurantRV.setOnClickListener(v -> {
+//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new FavoritesFragment(), null);
+//        });
+
+
         return root;
     }
 
