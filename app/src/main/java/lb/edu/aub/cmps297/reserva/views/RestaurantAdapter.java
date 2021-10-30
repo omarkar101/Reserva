@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.models.Restaurant;
 import lb.edu.aub.cmps297.reserva.ui.restauarant.RestaurantDetails;
+import lb.edu.aub.cmps297.reserva.StaticStorage;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Viewholder>{
     private Context context;
@@ -55,6 +56,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context.getApplicationContext(), RestaurantDetails.class);
+                StaticStorage.restaurantChosen = position;
                 context.startActivity(i);
             }
         });
