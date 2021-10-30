@@ -8,6 +8,7 @@ public class Restaurant {
     private String location;
     private int img;
     private boolean isFav;
+    private int reservationCounter;
 
     public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img) {
         this.name = name;
@@ -17,6 +18,7 @@ public class Restaurant {
         this.location = location;
         this.img = img;
         this.isFav = false;
+        this.reservationCounter = 0;
     }
 
     public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img, boolean isFav) {
@@ -27,6 +29,7 @@ public class Restaurant {
         this.location = location;
         this.img = img;
         this.isFav = isFav;
+        this.reservationCounter = 0;
     }
 
     public String getName() {
@@ -83,5 +86,13 @@ public class Restaurant {
 
     public void setFav(boolean fav) {
         isFav = fav;
+    }
+
+    public int getReservationCounter() {
+        return reservationCounter;
+    }
+
+    public void setReservationCounter(int reservationCounter) {
+        this.reservationCounter = reservationCounter;
     }
 }

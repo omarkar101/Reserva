@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         for (int i = 0; i < 10; i++) {
-            StaticStorage.restaurants.add(new Restaurant("Food", "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp));
+            StaticStorage.restaurants.add(new Restaurant("Food" + i, "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp));
         }
         super.onCreate(savedInstanceState);
 
