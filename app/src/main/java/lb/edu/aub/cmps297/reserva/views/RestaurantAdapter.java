@@ -3,6 +3,7 @@ package lb.edu.aub.cmps297.reserva.views;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.models.Restaurant;
+import lb.edu.aub.cmps297.reserva.ui.restauarant.RestaurantDetails;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Viewholder>{
     private Context context;
@@ -47,6 +49,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             } else {
                 restaurant.setFav(true);
                 holder.favButton.setImageResource(R.drawable.black_favorite);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context.getApplicationContext(), RestaurantDetails.class);
+                context.startActivity(i);
             }
         });
     }

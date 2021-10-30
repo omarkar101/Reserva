@@ -22,7 +22,6 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private RecyclerView restaurantRV;
-//    private Fragment fragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,12 +30,8 @@ public class HomeFragment extends Fragment {
         restaurantRV = root.findViewById(R.id.idRVRestaurant);
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), StaticStorage.restaurants);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
-//        restaurantRV.setLayoutManager(linearLayoutManager);
-//        restaurantRV.setAdapter(restaurantAdapter);
-//
-//        restaurantRV.setOnClickListener(v -> {
-//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new FavoritesFragment(), null);
-//        });
+        restaurantRV.setLayoutManager(linearLayoutManager);
+        restaurantRV.setAdapter(restaurantAdapter);
 
 
         return root;
