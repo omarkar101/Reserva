@@ -1,14 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idRestaurantHomeScrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RestaurantHomeFragment">
+    android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRVRestaurant"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/idRestaurantHomeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:context=".RestaurantHomeFragment">
+
+        <ImageView
+            android:id="@+id/idRestarauntHomeImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_dashboard_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-black"
+            android:text="TextView"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestarauntHomeImg" />
+
+        <Button
+            android:id="@+id/idRestaurantHomeViewMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Edit Info"
+            app:backgroundTint="#FF0000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestarauntHomeImg" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeDescriptionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Description"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeName" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeDescriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeDescriptionTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomePhoneNumberTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Call"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeDescriptionText" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomePhoneNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomePhoneNumberTitle"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeDescriptionText" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeLocationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomePhoneNumberTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeLocationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeLocationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomePhoneNumberText" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeSeatsTitle"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Total number of seats"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeLocationTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeSeatsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsTitle"
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
+
+        <ImageButton
+            android:id="@+id/idRestaurantHomeArrowUpBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_up_float"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
+
+        <ImageButton
+            android:id="@+id/idRestaurantHomeArrowDownBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_down_float"
+            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeArrowUpBtn" />
+
+        <Button
+            android:id="@+id/idRestaurantHomeReserveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:enabled="false"
+            android:text="Save changes"
+            app:backgroundTint="#FF0000"
+            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeMenuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Menu"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeSeatsTitle" />
+
+        <HorizontalScrollView
+            android:id="@+id/idRestaurantHomeMenuScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeMenuTitle">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVRestaurantHomeMenuRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </HorizontalScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
