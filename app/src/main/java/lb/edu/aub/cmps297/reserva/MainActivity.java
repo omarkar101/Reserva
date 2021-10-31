@@ -10,16 +10,23 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
+
 import lb.edu.aub.cmps297.reserva.databinding.ActivityMainBinding;
+import lb.edu.aub.cmps297.reserva.models.Menu;
 import lb.edu.aub.cmps297.reserva.models.Restaurant;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ArrayList<Integer> menuImgs = new ArrayList<Integer>();
+        menuImgs.add(R.drawable.menu1);
+        menuImgs.add(R.drawable.menu2);
 
+        Menu menu = new Menu(menuImgs);
         for (int i = 0; i < 10; i++) {
-            StaticStorage.restaurants.add(new Restaurant("Food" + i, "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp));
+            StaticStorage.restaurants.add(new Restaurant("Food" + i, "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp, menu));
         }
         super.onCreate(savedInstanceState);
 
@@ -30,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_favorites)
+                R.id.navigation_home, R.id.navigation_favorites,R.id.navigation_dashboard )
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

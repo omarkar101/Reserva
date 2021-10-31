@@ -1,5 +1,7 @@
 package lb.edu.aub.cmps297.reserva.models;
 
+import java.util.ArrayList;
+
 public class Restaurant {
     private String name;
     private String cellPhone;
@@ -9,6 +11,7 @@ public class Restaurant {
     private int img;
     private boolean isFav;
     private int reservationCounter;
+    private Menu menu;
 
     public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img) {
         this.name = name;
@@ -30,6 +33,17 @@ public class Restaurant {
         this.img = img;
         this.isFav = isFav;
         this.reservationCounter = 0;
+    }
+    public Restaurant(String name, String cellPhone, int numSeats, String description, String location, int img, Menu menu) {
+        this.name = name;
+        this.cellPhone = cellPhone;
+        this.numSeats = numSeats;
+        this.description = description;
+        this.location = location;
+        this.img = img;
+        this.isFav = isFav;
+        this.reservationCounter = 0;
+        this.menu = menu;
     }
 
     public String getName() {
@@ -94,5 +108,13 @@ public class Restaurant {
 
     public void setReservationCounter(int reservationCounter) {
         this.reservationCounter = reservationCounter;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }
