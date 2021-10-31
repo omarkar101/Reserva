@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -18,7 +19,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/idRestaurantCardRL">
 
-        <!--ImageVIew to display our Course Image-->
         <ImageView
             android:id="@+id/idRestaurantImg"
             android:layout_width="100dp"
@@ -34,7 +34,7 @@
             android:padding="5dp"
             android:src="@drawable/ic_dashboard_black_24dp" />
 
-        <!--Text View to display Course Name-->
+
         <TextView
             android:id="@+id/idRestaurantName"
             android:layout_width="wrap_content"
@@ -56,5 +56,43 @@
             android:src="@drawable/white_favorite"
             android:backgroundTint="@color/white"
             android:id="@+id/btnFavorite"/>
+
+        <TextView
+            android:id="@+id/idRestaurantPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Call:"
+            app:layout_constraintStart_toStartOf="@+id/idRestaurantName"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantName" />
+
+        <TextView
+            android:id="@+id/idRestaurantPhoneNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantPhoneNumber"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantPhoneNumber"
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantPhoneNumber" />
+
+        <TextView
+            android:id="@+id/idRestaurantLocationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Location:"
+            app:layout_constraintStart_toStartOf="@+id/idRestaurantPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantPhoneNumber" />
+
+        <TextView
+            android:id="@+id/idRestaurantLocationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantLocationTitle"
+            app:layout_constraintStart_toEndOf="@+id/idRestaurantLocationTitle"
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantLocationTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

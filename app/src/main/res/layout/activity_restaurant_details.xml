@@ -35,16 +35,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idRestarauntDetialsImg" />
 
-        <Button
-            android:id="@+id/idRestaurantDetialsViewMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="View Menu"
-            app:backgroundTint="#FF0000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idRestarauntDetialsImg" />
+<!--        <Button-->
+<!--            android:id="@+id/idRestaurantDetialsViewMenu"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:text="View Menu"-->
+<!--            app:backgroundTint="#FF0000"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/idRestarauntDetialsImg" />-->
 
         <TextView
             android:id="@+id/idRestaurantDetialsDescriptionTitle"
@@ -155,11 +155,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:enabled="false"
             android:text="Reserve"
             app:backgroundTint="#FF0000"
             app:layout_constraintBottom_toBottomOf="@+id/idRestaurantDetailsSeatsTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/idRestaurantDetailsSeatsTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantDetailsMenuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Menu"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantDetailsSeatsTitle" />
+
+        <HorizontalScrollView
+            android:id="@+id/idRestaurantDetailsMenuScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantDetailsMenuTitle">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVRestaurantDetailsMenuRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </HorizontalScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

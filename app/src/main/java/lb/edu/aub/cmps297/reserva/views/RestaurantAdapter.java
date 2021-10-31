@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
@@ -24,7 +26,6 @@ import lb.edu.aub.cmps297.reserva.StaticStorage;
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Viewholder>{
     private Context context;
     private ArrayList<Restaurant> restaurantsModelArrayList;
-
     public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurantsModelArrayList) {
         this.context = context;
         this.restaurantsModelArrayList = restaurantsModelArrayList;
@@ -42,6 +43,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         Restaurant restaurant = restaurantsModelArrayList.get(position);
         holder.restaurantName.setText(restaurant.getName());
         holder.restaurantImg.setImageResource(restaurant.getImg());
+        holder.restaurantPhoneNumber.setText(restaurant.getCellPhone());
+        holder.restaurantLocation.setText(restaurant.getLocation());
         holder.favButton.setImageResource(restaurant.isFav() ? R.drawable.black_favorite : R.drawable.white_favorite);
         holder.favButton.setOnClickListener(v -> {
             if(restaurant.isFav()) {
@@ -71,11 +74,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         private ImageButton favButton;
         private ImageView restaurantImg;
         private TextView restaurantName;
+        private TextView restaurantPhoneNumber;
+        private TextView restaurantLocation;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             restaurantImg = itemView.findViewById(R.id.idRestaurantImg);
             restaurantName = itemView.findViewById(R.id.idRestaurantName);
             favButton = itemView.findViewById(R.id.btnFavorite);
+            restaurantPhoneNumber = itemView.findViewById(R.id.idRestaurantPhoneNumberText);
+            restaurantLocation = itemView.findViewById(R.id.idRestaurantLocationText);
         }
     }
 }
