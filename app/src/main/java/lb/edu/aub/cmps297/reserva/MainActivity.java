@@ -18,6 +18,7 @@ import lb.edu.aub.cmps297.reserva.models.Restaurant;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    private BottomNavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
@@ -32,12 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        navigationView = findViewById(R.id.nav_view);
+        if(StaticStorage.isRestaurant){
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.bottom_nav_menu_restaurant);
+        } else {
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.bottom_nav_menu_client);
+        }
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_favorites,R.id.navigation_dashboard )
+                R.id.navigation_home, R.id.navigation_favorites,R.id.navigation_profile,R.id.navigation_settings,R.id.navigation_reservations,R.id.navigation_restaurant_settings)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

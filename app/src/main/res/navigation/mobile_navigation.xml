@@ -16,10 +16,27 @@
         android:name="lb.edu.aub.cmps297.reserva.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/navigation_reservations"
+        android:name="lb.edu.aub.cmps297.reserva.ReservationsFragment"
+        android:label="@string/title_reservations"
+        tools:layout="@layout/fragment_reservations" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="lb.edu.aub.cmps297.reserva.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_restaurant_settings"
+        android:name="lb.edu.aub.cmps297.reserva.RestaurantSettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_restaurant_settings" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="lb.edu.aub.cmps297.reserva.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="lb.edu.aub.cmps297.reserva.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
