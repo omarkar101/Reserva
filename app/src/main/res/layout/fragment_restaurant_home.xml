@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@+id/idRestarauntHomeImg" />
 
         <Button
-            android:id="@+id/idRestaurantHomeViewMenu"
+            android:id="@+id/idRestaurantHomeEditInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="TextView"
+            android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsTitle"
             app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
@@ -138,6 +138,7 @@
             android:id="@+id/idRestaurantHomeArrowUpBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:src="@android:drawable/arrow_up_float"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
             app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
@@ -146,13 +147,14 @@
             android:id="@+id/idRestaurantHomeArrowDownBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:src="@android:drawable/arrow_down_float"
             app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeArrowUpBtn" />
 
         <Button
-            android:id="@+id/idRestaurantHomeReserveBtn"
+            android:id="@+id/idRestaurantHomeSaveChangesBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"

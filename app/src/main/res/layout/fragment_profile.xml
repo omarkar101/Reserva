@@ -5,7 +5,10 @@
     android:id="@+id/idRestaurantDetailsScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragment"
+    >
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -109,22 +112,7 @@
 
 
             <Button
-                android:id="@+id/button8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:elevation="0dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="View Favorite Restaurants"
-                android:textColor="@color/white" />
-
-
-            <Button
-                android:id="@+id/button10"
+                android:id="@+id/idRestaurantSettingsEditAccountInfoBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -157,4 +145,5 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</LinearLayout>
 </ScrollView>

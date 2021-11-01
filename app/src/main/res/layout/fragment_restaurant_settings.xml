@@ -33,7 +33,7 @@
 
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/idRestaurantSettingsEditAccountInfoBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
