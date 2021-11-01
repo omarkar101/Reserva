@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_restaurant_home"
+    app:startDestination="@id/navigation_restaurant_home"
     >
+
 <!--    StaticStorage.isRestaurant ? "@+id/navigation_restaurant_home" : "@+id/navigation_home"-->
     <fragment
         android:id="@+id/navigation_home"
@@ -45,5 +46,11 @@
         android:id="@+id/navigation_restaurant_home"
         android:name="lb.edu.aub.cmps297.reserva.RestaurantHomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_restaurant_home" />
+        tools:layout="@layout/fragment_restaurant_home"
+        >
+        <action android:id="@+id/action_restaurant_home_to_user_home"
+            app:destination="@id/navigation_home"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_restaurant_home"/>
+    </fragment>
 </navigation>
