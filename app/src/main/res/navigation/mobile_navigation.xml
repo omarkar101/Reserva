@@ -46,10 +46,5 @@
         android:name="lb.edu.aub.cmps297.reserva.RestaurantHomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_restaurant_home"
-        >
-        <action android:id="@+id/action_restaurant_home_to_user_home"
-            app:destination="@id/navigation_home"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/navigation_restaurant_home"/>
-    </fragment>
+        />
 </navigation>

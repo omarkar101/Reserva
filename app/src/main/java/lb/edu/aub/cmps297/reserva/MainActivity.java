@@ -47,16 +47,23 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_favorites,R.id.navigation_profile,R.id.navigation_settings,R.id.navigation_reservations,R.id.navigation_restaurant_settings,R.id.navigation_restaurant_home)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
 
-        if(StaticStorage.isRestaurant) {
+        if (StaticStorage.isRestaurant) {
+            NavGraph graph = navController.getGraph();
+            graph.setStartDestination(R.id.navigation_restaurant_home);
+            navController.setGraph(graph);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(binding.navView, navController);
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.bottom_nav_menu_restaurant);
         } else {
+            NavGraph graph = navController.getGraph();
+            graph.setStartDestination(R.id.navigation_home);
+            navController.setGraph(graph);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(binding.navView, navController);
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.bottom_nav_menu_client);
-            navController.navigate(R.id.action_restaurant_home_to_user_home);
         }
     }
 }
