@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Reserva">
         <activity
-            android:name=".RestaurantEditInfo"
+            android:name=".ChangeUserInfo"
             android:exported="false" />
-        <!-- <activity -->
+        <activity
+            android:name=".RestaurantEditInfo"
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Settings" -->
         <!-- android:exported="false" /> -->
         <!-- <activity -->
@@ -45,7 +47,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="preloaded_fonts"

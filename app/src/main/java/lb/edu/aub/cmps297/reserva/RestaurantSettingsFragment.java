@@ -16,6 +16,7 @@ import lb.edu.aub.cmps297.reserva.databinding.FragmentRestaurantSettingsBinding;
 public class RestaurantSettingsFragment extends Fragment implements View.OnClickListener{
     private FragmentRestaurantSettingsBinding binding;
     private Button btnAccountInfo;
+    private Button logOutRestaurantBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -24,13 +25,23 @@ public class RestaurantSettingsFragment extends Fragment implements View.OnClick
 
         btnAccountInfo = root.findViewById(R.id.idRestaurantSettingsEditAccountInfoBtn);
         btnAccountInfo.setOnClickListener(this);
-
+        logOutRestaurantBtn = root.findViewById(R.id.idRestaurantSettingsLogOutBtn);
+        logOutRestaurantBtn.setOnClickListener(this);
         return root;
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent2 = new Intent(this.getContext(), RestaurantEditInfo.class);
-        startActivity(intent2);
+        switch (v.getId()) {
+            case R.id.idRestaurantSettingsEditAccountInfoBtn:
+                Intent intent2 = new Intent(this.getContext(), RestaurantEditInfo.class);
+                startActivity(intent2);
+                break;
+            case R.id.idRestaurantSettingsLogOutBtn:
+                Intent intent = new Intent(this.getContext(), WelcomeToReserva.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+        }
     }
 }

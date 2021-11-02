@@ -19,8 +19,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent2 = new Intent(LogIn.this, MainActivity.class);
-        startActivity(intent2);
-        finish();
+        Intent intent = new Intent(LogIn.this, MainActivity.class);
+        intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

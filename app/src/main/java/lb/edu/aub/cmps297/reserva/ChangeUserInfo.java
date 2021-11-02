@@ -12,15 +12,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class RestaurantEditInfo extends AppCompatActivity {
+public class ChangeUserInfo extends AppCompatActivity {
+    private ImageButton userImg;
     private Button SaveChangesBtn;
     private Button CancelBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_edit_info);
-        ImageButton restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
-        restaurantImg.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_change_user_info);
+        userImg = findViewById(R.id.idUserEditInfoUserImgEdit);
+        userImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -28,7 +29,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
             }
         });
 
-        SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
+        SaveChangesBtn = findViewById(R.id.idUserEditInfoSaveChanges);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +37,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
             }
         });
 
-        CancelBtn = findViewById(R.id.idRestaurantEditInfoCancelBtn);
+        CancelBtn = findViewById(R.id.idUserEditInfoCancel);
         CancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,13 +45,12 @@ public class RestaurantEditInfo extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
-            ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
+            ImageView imageView = findViewById(R.id.idUserEditInfoUserImgEdit);
             imageView.setImageURI(selectedImage);
         }
     }
