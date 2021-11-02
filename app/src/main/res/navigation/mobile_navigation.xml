@@ -6,7 +6,6 @@
     app:startDestination="@id/navigation_restaurant_home"
     >
 
-<!--    StaticStorage.isRestaurant ? "@+id/navigation_restaurant_home" : "@+id/navigation_home"-->
     <fragment
         android:id="@+id/navigation_home"
         android:name="lb.edu.aub.cmps297.reserva.ui.home.HomeFragment"
