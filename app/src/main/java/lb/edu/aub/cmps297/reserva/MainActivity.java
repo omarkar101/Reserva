@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Menu menu = new Menu(menuImgs);
         if(StaticStorage.restaurants.size() < 10) {
             for (int i = 0; i < 10; i++) {
-                StaticStorage.restaurants.add(new Restaurant("Food" + i, "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp, menu));
+                StaticStorage.restaurants.add(new Restaurant("Restaurant " + i, "03/000111", 100, "This is Restaurant " + i, "Beirut,Lebanon", R.drawable.ic_dashboard_black_24dp, menu));
             }
         }
         super.onCreate(savedInstanceState);

@@ -136,20 +136,20 @@
 
         <ImageButton
             android:id="@+id/idRestaurantHomeArrowUpBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="2dp"
             android:src="@android:drawable/arrow_up_float"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
-            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeLocationText" />
 
         <ImageButton
             android:id="@+id/idRestaurantHomeArrowDownBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="2dp"
             android:src="@android:drawable/arrow_down_float"
-            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeArrowUpBtn" />
 

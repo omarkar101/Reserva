@@ -27,6 +27,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FragmentProfileBinding binding;
     private Button logOutUserBtn;
     private Button userEditInfoBtn;
+    private Button userReservationsBtn;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,8 +36,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View root = binding.getRoot();
         logOutUserBtn = root.findViewById(R.id.idUserProfileLogOutBtn);
         userEditInfoBtn = root.findViewById(R.id.idUserProfileEditUserInfo);
+        userReservationsBtn = root.findViewById(R.id.idUserProfileYourReservationsBtn);
         logOutUserBtn.setOnClickListener(this);
         userEditInfoBtn.setOnClickListener(this);
+        userReservationsBtn.setOnClickListener(this);
         return root;
     }
 
@@ -56,6 +60,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.idUserProfileEditUserInfo:
                 Intent intent1 = new Intent(this.getContext(), ChangeUserInfo.class);
                 startActivity(intent1);
+                break;
+            case R.id.idUserProfileYourReservationsBtn:
+                Intent intent2 = new Intent(this.getContext(),UserReservations.class);
+                startActivity(intent2);
                 break;
         }
     }
