@@ -22,10 +22,6 @@ public class LoggedInUserRepository {
     public boolean insert(@NonNull LoggedInUser loggedInUser) {
 
         try {
-            LoggedInUser loggedInUserFromDb = new getUserAsyncTask(mLoggedInUserDao).execute(loggedInUser.email).get();
-            if(loggedInUserFromDb != null) {
-                return false;
-            }
             new deleteAllAsyncTask(mLoggedInUserDao).execute().get();
             new insertAsyncTask(mLoggedInUserDao).execute(loggedInUser).get();
         } catch (ExecutionException e) {
@@ -50,11 +46,18 @@ public class LoggedInUserRepository {
         }
     }
 
-    public LoggedInUser getUser(String email) {
-        return mLoggedInUserDao.findByEmail(email);
+    public LoggedInUser getUser() {
+        try {
+            return new getUserAsyncTask(mLoggedInUserDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    private static class getUserAsyncTask extends AsyncTask<String, Void, LoggedInUser> {
+    private static class getUserAsyncTask extends AsyncTask<Void, Void, LoggedInUser> {
 
         private LoggedInUserDao mAsyncTaskDao;
 
@@ -63,18 +66,28 @@ public class LoggedInUserRepository {
         }
 
         @Override
-        protected LoggedInUser doInBackground(final String... params) {
-            return mAsyncTaskDao.findByEmail(params[0]);
+        protected LoggedInUser doInBackground(final Void... params) {
+            LoggedInUser[] loggedInUsers = mAsyncTaskDao.getUser();
+            if (loggedInUsers.length == 0){
+                return null;
+            }
+            return loggedInUsers[0];
         }
     }
 
     public void deleteAll() {
-        mLoggedInUserDao.deleteAll();
+        try {
+            new deleteAllAsyncTask(mLoggedInUserDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private LoggedInUserDao mAsyncTaskDao;
+        private final LoggedInUserDao mAsyncTaskDao;
 
         deleteAllAsyncTask(LoggedInUserDao dao) {
             mAsyncTaskDao = dao;

@@ -21,8 +21,8 @@ public class LoggedInUserViewModel extends AndroidViewModel {
         return loggedInUserRepository.insert(loggedInUser);
     }
 
-    public LoggedInUser getUser(String email) {
-        return loggedInUserRepository.getUser(email);
+    public LoggedInUser getUser() {
+        return loggedInUserRepository.getUser();
     }
 
     public void deleteAll() {

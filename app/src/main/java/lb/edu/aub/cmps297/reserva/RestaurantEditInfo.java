@@ -2,6 +2,7 @@ package lb.edu.aub.cmps297.reserva;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,9 +13,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
+import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
+
 public class RestaurantEditInfo extends AppCompatActivity {
     private Button SaveChangesBtn;
     private Button CancelBtn;
+//    private Restaurant restaurant;
+//    private LoggedInUserViewModel loggedInUserViewModel;
+//    private RestaurantViewModel restaurantViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +36,10 @@ public class RestaurantEditInfo extends AppCompatActivity {
                 startActivityForResult(intent, 3);
             }
         });
+
+//        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+//        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
+//        restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
