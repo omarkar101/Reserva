@@ -24,7 +24,13 @@ public class ClientRepository {
         if(clientFromDb != null) {
             return false;
         }
-        new insertAsyncTask(mClientDao).execute(client);
+        try {
+            new insertAsyncTask(mClientDao).execute(client).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return true;
     }
     private static class insertAsyncTask extends AsyncTask<Client, Void, Void> {

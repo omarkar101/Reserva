@@ -3,7 +3,6 @@ package lb.edu.aub.cmps297.reserva;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,12 +47,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
         mloggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
-        mloggedInUserViewModel.deleteAll();
         LoggedInUser loggedInUser = new LoggedInUser(email, userType.name());
         mloggedInUserViewModel.insert(loggedInUser);
         return true;
     }
-
 
     private Button loginAsRestaurantBtn;
     private Button loginAsClientBtn;

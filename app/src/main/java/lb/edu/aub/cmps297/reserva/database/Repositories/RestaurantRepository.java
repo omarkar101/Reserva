@@ -20,11 +20,24 @@ public class RestaurantRepository {
     }
 
     public boolean insert(Restaurant restaurant) {
-        Restaurant restaurantFromDb = mRestaurantDao.findByEmail(restaurant.email);
+        Restaurant restaurantFromDb = null;
+        try {
+            restaurantFromDb = new getRestaurantAsyncTask(mRestaurantDao).execute(restaurant.email).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(restaurantFromDb != null) {
             return false;
         }
-        new insertAsyncTask(mRestaurantDao).execute(restaurant);
+        try {
+            new insertAsyncTask(mRestaurantDao).execute(restaurant).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return true;
     }
     private static class insertAsyncTask extends AsyncTask<Restaurant, Void, Void> {

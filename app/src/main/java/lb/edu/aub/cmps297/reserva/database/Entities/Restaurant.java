@@ -3,6 +3,7 @@ package lb.edu.aub.cmps297.reserva.database.Entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "restaurants")
@@ -16,7 +17,7 @@ public class Restaurant {
     public String password;
 
     @ColumnInfo(name = "name")
-    public int name;
+    public String name;
 
     @ColumnInfo(name = "phone_number")
     public String phoneNumber;
@@ -31,6 +32,13 @@ public class Restaurant {
     public int seatsMaxCapacity;
 
     public Restaurant(@NonNull String email) {
+        this.email = email;
+    }
+
+    @Ignore
+    public Restaurant(String name, @NonNull String email, String password) {
+        this.name = name;
+        this.password = password;
         this.email = email;
     }
 }
