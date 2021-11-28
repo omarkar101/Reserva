@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -21,14 +22,24 @@ import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 public class RestaurantEditInfo extends AppCompatActivity {
     private Button SaveChangesBtn;
     private Button CancelBtn;
-//    private Restaurant restaurant;
-//    private LoggedInUserViewModel loggedInUserViewModel;
-//    private RestaurantViewModel restaurantViewModel;
+    private EditText restaurantName;
+    private EditText restaurantDescription;
+    private EditText restaurantLocation;
+    private EditText restaurantPhoneNumber;
+
+    private Restaurant restaurant;
+    private LoggedInUserViewModel loggedInUserViewModel;
+    private RestaurantViewModel restaurantViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_edit_info);
         ImageButton restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
+        restaurantName = findViewById(R.id.idRestaurantEditInfoRestaurantNameEditText);
+        restaurantDescription = findViewById(R.id.idRestaurantEditInfoDescriptionText);
+        restaurantLocation = findViewById(R.id.idRestaurantEditInfoLocationText);
+        restaurantPhoneNumber = findViewById(R.id.idRestaurantEditInfoPhoneNumberText);
+
         restaurantImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,14 +48,21 @@ public class RestaurantEditInfo extends AppCompatActivity {
             }
         });
 
-//        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
-//        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
-//        restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
+        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+        restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
+        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
+        restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
+        restaurantName.setText(restaurant.name);
+        restaurantDescription.setText(restaurant.description);
+        restaurantPhoneNumber.setText(restaurant.phoneNumber);
+        restaurantLocation.setText(restaurant.location);
+
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                restaurantViewModel.updateRestaurantInfo(restaurantName.getText().toString(),restaurant.email,restaurantPhoneNumber.getText().toString(),restaurantLocation.getText().toString(),restaurantDescription.getText().toString());
                 finish();
             }
         });

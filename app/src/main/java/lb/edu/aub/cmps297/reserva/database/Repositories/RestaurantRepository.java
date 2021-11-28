@@ -78,4 +78,28 @@ public class RestaurantRepository {
             return mAsyncTaskDao.findByEmail(params[0]);
         }
     }
+
+    public void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description) {
+        try {
+            new updateRestaurantInfoAsyncTask(mRestaurantDao).execute(name,email,phoneNumber,Location,Description).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantInfoAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantInfoAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantInfo(params[0],params[1],params[2],params[3],params[4]);
+            return null;
+        }
+    }
 }

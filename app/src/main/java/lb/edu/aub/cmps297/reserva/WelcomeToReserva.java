@@ -27,6 +27,8 @@ public class WelcomeToReserva extends AppCompatActivity implements View.OnClickL
         if (loggedInUserViewModel.getUser() != null){
             Intent intent2 = new Intent(WelcomeToReserva.this, MainActivity.class);
             startActivity(intent2);
+            finish();
+            return;
         }
 
         signUpButton.setOnClickListener(this);
