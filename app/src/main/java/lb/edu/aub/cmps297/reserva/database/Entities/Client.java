@@ -3,6 +3,7 @@ package lb.edu.aub.cmps297.reserva.database.Entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "clients")
@@ -16,12 +17,19 @@ public class Client {
     public String password;
 
     @ColumnInfo(name = "name")
-    public int name;
+    public String name;
 
     @ColumnInfo(name = "phone_number")
     public String phoneNumber;
 
     public Client(@NonNull String email) {
         this.email = email;
+    }
+
+    @Ignore
+    public Client(String name, @NonNull String email, String password) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
     }
 }

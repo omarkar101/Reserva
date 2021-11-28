@@ -20,11 +20,11 @@ public class ClientRepository {
     }
 
     public boolean insert(@NonNull Client client) {
-        Client clientFromDb = mClientDao.findByEmail(client.email);
-        if(clientFromDb != null) {
-            return false;
-        }
         try {
+            Client clientFromDb = new getClientAsyncTask(mClientDao).execute(client.email).get();
+            if(clientFromDb != null) {
+                return false;
+            }
             new insertAsyncTask(mClientDao).execute(client).get();
         } catch (ExecutionException e) {
             e.printStackTrace();

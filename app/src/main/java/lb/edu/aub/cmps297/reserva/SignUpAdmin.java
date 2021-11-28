@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.ClientViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 
@@ -18,13 +19,16 @@ public class SignUpAdmin extends AppCompatActivity implements View.OnClickListen
     private Button btnSignUpAsAdmin;
 
     private RestaurantViewModel mRestaurantViewModel;
+    private ClientViewModel clientViewModel;
     private EditText restaurantNameEditText;
     private EditText restaurantEmailEditText;
     private EditText restaurantPasswordEditText;
 
     private boolean signUpRestaurant(String name, String email, String password) {
         Restaurant restaurantFromDb = mRestaurantViewModel.getRestaurant(email);
-        if(restaurantFromDb != null) return false; // the restaurant is already registered
+        if(restaurantFromDb != null || name.isEmpty() || email.isEmpty() || password.isEmpty())
+            return false; // the restaurant is already registered
+        if(clientViewModel.getClient(email) != null) return false;
         Restaurant newRestaurant = new Restaurant(name, email, password);
         mRestaurantViewModel.insert(newRestaurant);
         return true;
@@ -35,6 +39,7 @@ public class SignUpAdmin extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_admin);
         mRestaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
+        clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
         restaurantNameEditText = findViewById(R.id.idSignUpRestaurantNameEditText);
         restaurantEmailEditText = findViewById(R.id.idSignUpEmailEditText);
         restaurantPasswordEditText = findViewById(R.id.idSignUpPasswordEditText);
