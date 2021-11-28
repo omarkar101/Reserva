@@ -43,7 +43,7 @@
                 android:text="Log In"/>
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/idLoginEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -58,32 +58,46 @@
                 android:textSize="14dp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/idLoginPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/signup_edt_back"
-                android:ems="10"
-                android:fontFamily="@font/montserrat"
+                android:drawableStart="@drawable/ic_baseline_vpn_key_24"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="8dp"
                 android:textSize="14dp" />
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <Button
-                android:id="@+id/idButtonLogIn"
+                android:id="@+id/idLoginLoginAsClientBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@android:color/holo_red_light"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Login"
+                android:text="Login as client"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/idLoginLoginAsRestaurantBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Login as restaurant"
                 android:textColor="#fff" />
 
 
