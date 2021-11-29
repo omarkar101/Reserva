@@ -62,7 +62,9 @@ public class RestaurantEditInfo extends AppCompatActivity {
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                restaurantViewModel.updateRestaurantInfo(restaurantName.getText().toString(),restaurant.email,restaurantPhoneNumber.getText().toString(),restaurantLocation.getText().toString(),restaurantDescription.getText().toString());
+                restaurantViewModel.updateRestaurantInfo(restaurantName.getText().toString(),
+                        restaurant.email,restaurantPhoneNumber.getText().toString(),
+                        restaurantLocation.getText().toString(),restaurantDescription.getText().toString());
                 finish();
             }
         });
