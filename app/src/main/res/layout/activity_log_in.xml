@@ -73,11 +73,6 @@
                 android:padding="8dp"
                 android:textSize="14dp" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <Button
                 android:id="@+id/idLoginLoginAsClientBtn"
                 android:layout_width="match_parent"

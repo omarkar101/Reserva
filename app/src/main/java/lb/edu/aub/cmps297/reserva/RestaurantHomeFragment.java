@@ -24,7 +24,7 @@ import lb.edu.aub.cmps297.reserva.models.Menu;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 
 
-public class RestaurantHomeFragment extends Fragment implements View.OnClickListener {
+public class RestaurantHomeFragment extends Fragment {
     private FragmentRestaurantHomeBinding binding;
     private Restaurant restaurant;
     private ImageView restaurantImg;
@@ -36,7 +36,7 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
     private ImageButton restaurantArrowUp;
     private ImageButton restaurantArrowDown;
     private Button restaurantSaveChanges;
-    private Button restaurantEditInfoBtn;
+//    private Button restaurantEditInfoBtn;
 
     private LoggedInUserViewModel loggedInUserViewModel;
 
@@ -71,7 +71,7 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
         restaurantArrowUp = root.findViewById(R.id.idRestaurantHomeArrowUpBtn);
         restaurantArrowDown = root.findViewById(R.id.idRestaurantHomeArrowDownBtn);
         restaurantSaveChanges = root.findViewById(R.id.idRestaurantHomeSaveChangesBtn);
-        restaurantEditInfoBtn = root.findViewById(R.id.idRestaurantHomeEditInfo);
+//        restaurantEditInfoBtn = root.findViewById(R.id.idRestaurantHomeEditInfo);
 
         restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
         restaurantName.setText(restaurant.name);
@@ -80,7 +80,7 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
         restaurantLocationText.setText(restaurant.location);
         restaurantSeatsNumber.setText("0");
 
-        restaurantEditInfoBtn.setOnClickListener(this);
+//        restaurantEditInfoBtn.setOnClickListener(this);
 
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
@@ -107,9 +107,9 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
         return root;
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(this.getContext(), RestaurantEditInfo.class);
-        startActivity(intent);
-    }
+//    @Override
+//    public void onClick(View v) {
+//        Intent intent = new Intent(this.getContext(), RestaurantEditInfo.class);
+//        startActivity(intent);
+//    }
 }
