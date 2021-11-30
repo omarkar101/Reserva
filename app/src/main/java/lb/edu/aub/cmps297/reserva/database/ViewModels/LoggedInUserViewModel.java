@@ -10,7 +10,7 @@ import lb.edu.aub.cmps297.reserva.database.Repositories.LoggedInUserRepository;
 
 public class LoggedInUserViewModel extends AndroidViewModel {
 
-    private final LoggedInUserRepository loggedInUserRepository;
+    private LoggedInUserRepository loggedInUserRepository;
 
     public LoggedInUserViewModel(@NonNull Application application) {
         super(application);
