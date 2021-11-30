@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 
+import java.util.List;
+
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.Repositories.RestaurantRepository;
@@ -14,6 +16,9 @@ public class RestaurantViewModel extends AndroidViewModel {
     public RestaurantViewModel(Application application) {
         super(application);
         mRestaurantRepository = new RestaurantRepository(application);
+    }
+    public List<Restaurant> getAll() {
+        return mRestaurantRepository.getAll();
     }
     public boolean insert(Restaurant restaurant) {
         return mRestaurantRepository.insert(restaurant);
