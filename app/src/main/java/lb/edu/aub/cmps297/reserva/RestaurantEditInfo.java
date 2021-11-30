@@ -29,6 +29,8 @@ public class RestaurantEditInfo extends AppCompatActivity {
     private EditText restaurantLocation;
     private EditText restaurantPhoneNumber;
 
+    private ImageButton restaurantImg;
+
     private Restaurant restaurant;
     private LoggedInUserViewModel loggedInUserViewModel;
     private RestaurantViewModel restaurantViewModel;
@@ -36,7 +38,8 @@ public class RestaurantEditInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_edit_info);
-        ImageButton restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
+
+        restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
         restaurantName = findViewById(R.id.idRestaurantEditInfoRestaurantNameEditText);
         restaurantDescription = findViewById(R.id.idRestaurantEditInfoDescriptionText);
         restaurantLocation = findViewById(R.id.idRestaurantEditInfoLocationText);
@@ -90,6 +93,10 @@ public class RestaurantEditInfo extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
             imageView.setImageURI(selectedImage);
 
+            // hon bede hot el sura bel database
+
+            // hay mnaamila bel profile activity hek men jeeb el sura men database
+            // imageView.setImageBitmap(BitmapFactory.decodeStream(is)); // is hiye el blob
         }
     }
 }

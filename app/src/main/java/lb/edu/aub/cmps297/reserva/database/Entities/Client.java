@@ -22,6 +22,9 @@ public class Client {
     @ColumnInfo(name = "phone_number")
     public String phoneNumber;
 
+//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "profile_image")
+//    private byte[] profileImage;
+
     public Client(@NonNull String email) {
         this.email = email;
     }

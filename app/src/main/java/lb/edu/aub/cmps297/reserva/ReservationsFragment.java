@@ -48,7 +48,7 @@ public class ReservationsFragment extends Fragment {
 
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
 
-        seatsRemaining.setText("Seats Remaining: "+Integer.valueOf(restaurant.seatsMaxCapacity - restaurant.seatsAvailable).toString());
+        seatsRemaining.setText("Seats Remaining: "+Integer.valueOf(restaurant.seatsAvailable).toString());
 
         RestaurantIncomingRequestsAdapter incomingRequestsAdapter = new RestaurantIncomingRequestsAdapter(this.getContext(), StaticStorage.restaurants);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
