@@ -31,5 +31,6 @@ public class Client {
         this.email = email;
         this.name = name;
         this.password = password;
+        this.phoneNumber = "Your phone number goes here.";
     }
 }

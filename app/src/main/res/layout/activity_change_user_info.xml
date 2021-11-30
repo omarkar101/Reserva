@@ -12,14 +12,13 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/idUserEditInfoNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="3dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoNameTitle" />
 
@@ -49,19 +48,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoTitle" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="3dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoNameTitle" />
-
         <TextView
-            android:id="@+id/idRestaurantEditInfoDescriptionTitle"
+            android:id="@+id/idUserEditInfoPhoneNumberTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -71,7 +59,7 @@
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoNameText" />
 
         <ImageButton
             android:id="@+id/idUserEditInfoUserImgEdit"
@@ -97,10 +85,10 @@
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+            app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoPhoneNumberText" />
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/idUserEditInfoPhoneNumberText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -108,7 +96,7 @@
             android:ems="10"
             android:inputType="phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoDescriptionTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/idUserEditInfoPhoneNumberTitle" />
 
         <Button
             android:id="@+id/idUserEditInfoSaveChanges"

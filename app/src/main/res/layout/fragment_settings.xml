@@ -31,7 +31,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/idClientSettingsEditInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -41,11 +41,11 @@
                 android:backgroundTint="@android:color/holo_red_light"
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rate Us"
+                android:text="Change user info"
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/idRestaurantSettingsEditAccountInfoBtn"
+                android:id="@+id/idSettingsClientLogOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -55,7 +55,7 @@
                 android:backgroundTint="@android:color/holo_red_light"
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="About Us"
+                android:text="Log out"
                 android:textColor="@color/white" />
 
 

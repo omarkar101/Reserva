@@ -22,4 +22,7 @@ public interface ClientDao {
 
     @Delete
     void delete(Client client);
+
+    @Query("UPDATE clients SET name=:name,phone_number=:phoneNumber where email=:email")
+    void updateClientInfo(String name, String email, String phoneNumber);
 }

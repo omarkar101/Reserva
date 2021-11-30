@@ -20,4 +20,8 @@ public class ClientViewModel extends AndroidViewModel {
     public Client getClient(String email) {
         return mClientRepository.getClient(email);
     }
+
+    public void updateClientInfo(String name, String email, String phoneNumber){
+        mClientRepository.updateClientInfo(name, email, phoneNumber);
+    }
 }
