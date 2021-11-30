@@ -2,6 +2,7 @@ package lb.edu.aub.cmps297.reserva;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +22,12 @@ public class ReservationsFragment extends Fragment {
     private RecyclerView incomingRequestsRV;
     private RecyclerView currentReservationsRV;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentReservationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         incomingRequestsRV = root.findViewById(R.id.idRVRestaurantIncomingRequests);
-//        currentReservationsRV = root.findViewById(R.id.idRVRestaurantCurrentReservations);
+        currentReservationsRV = root.findViewById(R.id.idRVRestaurantCurrentReservations);
 
 
         RestaurantIncomingRequestsAdapter incomingRequestsAdapter = new RestaurantIncomingRequestsAdapter(this.getContext(), StaticStorage.restaurants);
@@ -37,10 +37,10 @@ public class ReservationsFragment extends Fragment {
 
 
 
-//        RestaurantCurrentReservationAdapter currentReservationAdapter = new RestaurantCurrentReservationAdapter(this.getContext(),StaticStorage.restaurants);
-//        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
-//        currentReservationsRV.setLayoutManager(linearLayoutManager2);
-//        currentReservationsRV.setAdapter(currentReservationAdapter);
+        RestaurantCurrentReservationAdapter currentReservationAdapter = new RestaurantCurrentReservationAdapter(this.getContext(),StaticStorage.restaurants);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        currentReservationsRV.setLayoutManager(linearLayoutManager2);
+        currentReservationsRV.setAdapter(currentReservationAdapter);
         return root;
     }
 

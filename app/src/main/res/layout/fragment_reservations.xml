@@ -1,263 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/idRestaurantReservationsScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservationsFragment"
-    android:fillViewport="true">
-    <RelativeLayout
+    tools:context=".ReservationsFragment">
+
+
+    <ScrollView
+        android:id="@+id/idRestaurantReservationsScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".ReservationsFragment">
-
+        android:layout_height="match_parent"
+        android:fillViewport="true">
         <LinearLayout
-            android:id="@+id/relative1"
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical"
-            android:paddingBottom="40dp">
+            android:background="@color/white">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/relative1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Reservations"
-                android:textColor="@color/black"
-                android:textSize="24dp" />
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingVertical="20dp">
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Reservations"
+                    android:textColor="@color/black"
+                    android:textSize="24dp" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="8dp"
+                    android:backgroundTint="#92938E"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:paddingVertical="15dp"
+                    android:text="Seats Remaining: 10"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="#92938E"
-                android:fontFamily="@font/montserrat_bold"
-                android:paddingVertical="15dp"
-                android:text="Seats Remaining: 10"
-                android:textColor="@color/white" />
+                android:orientation="vertical"
+                android:layout_marginTop="40dp">
 
+                <TextView
+                    android:id="@+id/idRestaurantReservationsIncomingRequestsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relative1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Incoming Requests:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/idRVRestaurantIncomingRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/idRestaurantReservationsIncomingRequestsTextView"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="23dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp">
+
+                <TextView
+                    android:id="@+id/idRestaurantReservationsCurrentReservationsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relative1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Current Reservations:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/idRVRestaurantCurrentReservations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/idRestaurantReservationsCurrentReservationsTextView"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="23dp" />
+
+            </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/idRestaurantReservationsIncomingRequestsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relative1"
-            android:layout_marginTop="-157dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Incoming Requests:"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/idRVRestaurantIncomingRequests"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignBottom="@+id/idRestaurantReservationsIncomingRequestsTextView"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="23dp" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/idRestaurantReservationsCurrentReservationsTextView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="sans-serif-light"-->
-<!--            android:text="Current Reservations:"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20sp" />-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/idRVRestaurantCurrentReservations"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:layout_alignBottom="@+id/idRestaurantReservationsCurrentReservationsTextView"-->
-
-<!--            />-->
-
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/idRVRestaurantIncomingRequests"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_marginTop="50dp">-->
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:paddingHorizontal="15dp">-->
-
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:fontFamily="sans-serif-light"-->
-<!--                        android:text="Current Reservations:"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="20sp" />-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:background="@color/grey" />-->
-
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        android:weightSum="2">-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:orientation="vertical">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="Omar - omar@gmail.com"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="seats requested: 5"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="88 - 777666"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-<!--                        </LinearLayout>-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:orientation="vertical">-->
-
-<!--                            <Button-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:backgroundTint="#92938E"-->
-<!--                                android:layout_gravity="right"-->
-<!--                                android:fontFamily="@font/montserrat"-->
-<!--                                android:text="End Reservation"-->
-<!--                                android:textColor="@color/white"-->
-<!--                                android:textSize="12dp" />-->
-<!--                        </LinearLayout>-->
-
-<!--                    </LinearLayout>-->
-
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="1dp"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:background="@color/grey" />-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        android:weightSum="2">-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:orientation="vertical">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="Omar - omar@gmail.com"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="seats requested: 5"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="88 - 777666"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp" />-->
-<!--                        </LinearLayout>-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:orientation="vertical">-->
-
-<!--                            <Button-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:backgroundTint="#92938E"-->
-<!--                                android:layout_gravity="right"-->
-<!--                                android:fontFamily="@font/montserrat"-->
-<!--                                android:text="End Reservation"-->
-<!--                                android:textColor="@color/white"-->
-<!--                                android:textSize="12dp" />-->
-<!--                        </LinearLayout>-->
-
-
-<!--                    </LinearLayout>-->
-
-<!--                </LinearLayout>-->
-
-
-<!--            </LinearLayout>-->
-
-
-<!--        </LinearLayout>-->
-
-    </RelativeLayout>
-</ScrollView>
-
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
