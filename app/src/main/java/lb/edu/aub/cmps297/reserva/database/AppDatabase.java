@@ -6,18 +6,21 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import lb.edu.aub.cmps297.reserva.database.DAO.FavoriteRestaurantsByClientsDao;
 import lb.edu.aub.cmps297.reserva.database.DAO.LoggedInUserDao;
 import lb.edu.aub.cmps297.reserva.database.DAO.RestaurantDao;
 import lb.edu.aub.cmps297.reserva.database.DAO.ClientDao;
+import lb.edu.aub.cmps297.reserva.database.Entities.FavoriteRestaurantsByClients;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 
-@Database(entities = {Client.class, Restaurant.class, LoggedInUser.class}, version = 2)
+@Database(entities = {Client.class, Restaurant.class, LoggedInUser.class, FavoriteRestaurantsByClients.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ClientDao userDao();
     public abstract RestaurantDao restaurantDao();
     public abstract LoggedInUserDao loggedInUserDao();
+    public abstract FavoriteRestaurantsByClientsDao favoriteRestaurantsByClientsDao();
 
     private static AppDatabase INSTANCE;
 
