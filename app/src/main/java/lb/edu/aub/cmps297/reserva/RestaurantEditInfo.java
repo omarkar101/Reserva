@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
@@ -97,6 +100,8 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
             // hay mnaamila bel profile activity hek men jeeb el sura men database
             // imageView.setImageBitmap(BitmapFactory.decodeStream(is)); // is hiye el blob
+
+//            OutputStream out = new ByteArrayOutputStream(imageView);
         }
     }
 }

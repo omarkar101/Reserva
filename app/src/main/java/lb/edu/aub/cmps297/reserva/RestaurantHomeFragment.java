@@ -54,9 +54,7 @@ public class RestaurantHomeFragment extends Fragment {
 
 
 //        hek men jeeb el sura men database mafrud
-//        InputStream is = new ByteArrayInputStream(restaurant.profileImage);
-//        Bitmap bitmap = BitmapFactory.decodeStream(is);
-//        restaurantImg.setImageBitmap(bitmap);
+
 
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
         menuImgs.add(R.drawable.menu1);
@@ -91,6 +89,12 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
 //        restaurantEditInfoBtn.setOnClickListener(this);
+
+
+        InputStream is = new ByteArrayInputStream(restaurant.profileImage);
+        Bitmap bitmap = BitmapFactory.decodeStream(is);
+        restaurantImg.setImageBitmap(bitmap);
+
 
         restaurantSaveChanges.setOnClickListener(view ->
                 restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email,Integer.parseInt(restaurantSeatsNumber.getText().toString()))
