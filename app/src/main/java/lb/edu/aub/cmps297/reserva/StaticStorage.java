@@ -8,4 +8,5 @@ public class StaticStorage {
     public static ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
     public static int restaurantChosen = -1;
     public static boolean isRestaurant = true;
+    public static String restaurantChosenEmail = "";
 }
