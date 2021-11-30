@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -57,6 +59,8 @@ public class RestaurantEditInfo extends AppCompatActivity {
         restaurantPhoneNumber.setText(restaurant.phoneNumber);
         restaurantLocation.setText(restaurant.location);
 
+//        Bitmap bitmap = ((BitmapDrawable)restaurantImg.getDrawable()).getBitmap();
+
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
             Uri selectedImage = data.getData();
             ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
             imageView.setImageURI(selectedImage);
+
         }
     }
 }

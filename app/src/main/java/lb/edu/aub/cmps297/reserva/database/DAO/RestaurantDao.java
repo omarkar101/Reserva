@@ -26,4 +26,7 @@ public interface RestaurantDao {
 
     @Query("UPDATE restaurants SET name=:name,phone_number=:phoneNumber,location=:Location,description=:Description where email=:email")
     void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description);
+
+    @Query("UPDATE restaurants SET seats_max_capacity=:seatsMaxCapacity where email=:email")
+    void updateRestaurantSeatsNumber(String email,int seatsMaxCapacity);
 }
