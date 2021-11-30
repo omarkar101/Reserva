@@ -20,15 +20,15 @@ public class FavoriteRestaurantsByClientsRepository {
         mFavoriteRestaurantsByClientsDao = db.favoriteRestaurantsByClientsDao();
     }
 
-    public List<Restaurant> getAllFavoriteRestaurants(String client_email) {
+    public ArrayList<Restaurant> getAllFavoriteRestaurants(String client_email) {
         try {
-            return Arrays.asList((new getAllFavoriteRestaurantsAsyncTask(mFavoriteRestaurantsByClientsDao).execute(client_email).get()).clone());
+            return new ArrayList<>(Arrays.asList(new getAllFavoriteRestaurantsAsyncTask(mFavoriteRestaurantsByClientsDao).execute(client_email).get()));
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return new ArrayList<Restaurant>();
+        return new ArrayList<>();
     }
 
     private static class getAllFavoriteRestaurantsAsyncTask extends AsyncTask<String, Void, Restaurant[]> {

@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
@@ -17,7 +18,7 @@ public class FavoriteRestaurantsByClientsViewModel extends AndroidViewModel {
         favoriteRestaurantsByClientsRepository = new FavoriteRestaurantsByClientsRepository(application);
     }
 
-    public List<Restaurant> getAllFavoriteRestaurants(String client_email) {
+    public ArrayList<Restaurant> getAllFavoriteRestaurants(String client_email) {
         return favoriteRestaurantsByClientsRepository.getAllFavoriteRestaurants(client_email);
     }
 

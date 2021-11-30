@@ -59,6 +59,7 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
 
 
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
+        if(restaurant == null) return root;
 
 //        restaurant = new Restaurant("Food stop", "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp, menu);
         restaurantImg = root.findViewById(R.id.idRestarauntHomeImg);

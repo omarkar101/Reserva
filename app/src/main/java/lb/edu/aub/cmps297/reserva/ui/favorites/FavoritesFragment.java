@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +16,10 @@ import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
+import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.FavoriteRestaurantsByClientsViewModel;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentFavoritesBinding;
-import lb.edu.aub.cmps297.reserva.models.Restaurant;
 import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
 
 public class FavoritesFragment extends Fragment {
@@ -25,20 +28,27 @@ public class FavoritesFragment extends Fragment {
     private RecyclerView restaurantRV;
     private ArrayList<Restaurant> favRestaurantArrayList;
     private TextView favRestaurantCounter;
+
+    private FavoriteRestaurantsByClientsViewModel favoriteRestaurantsByClientsViewModel;
+    private LoggedInUserViewModel loggedInUserViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         favRestaurantCounter = root.findViewById(R.id.idFavResCounter);
-        favRestaurantArrayList = new ArrayList<>();
-        for (int i = 0; i < StaticStorage.restaurants.size(); i++) {
-            if(StaticStorage.restaurants.get(i).isFav()) {
-                favRestaurantArrayList.add(StaticStorage.restaurants.get(i));
-            }
-        }
+        favoriteRestaurantsByClientsViewModel = new ViewModelProvider(this).get(FavoriteRestaurantsByClientsViewModel.class);
+        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+        String client_email = loggedInUserViewModel.getUser().email;
+        favRestaurantArrayList = favoriteRestaurantsByClientsViewModel.getAllFavoriteRestaurants(client_email);
+//        for (int i = 0; i < StaticStorage.restaurants.size(); i++) {
+//            if(StaticStorage.restaurants.get(i).isFav()) {
+//                favRestaurantArrayList.add(StaticStorage.restaurants.get(i));
+//            }
+//        }
         favRestaurantCounter.setText(favRestaurantArrayList.size() + " restaurants found");
         restaurantRV = root.findViewById(R.id.idRVRestaurant);
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), favRestaurantArrayList);
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), favRestaurantArrayList, favoriteRestaurantsByClientsViewModel, client_email);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         restaurantRV.setLayoutManager(linearLayoutManager);
         restaurantRV.setAdapter(restaurantAdapter);

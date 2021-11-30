@@ -19,6 +19,8 @@ import java.util.List;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.FavoriteRestaurantsByClientsViewModel;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentHomeBinding;
 import lb.edu.aub.cmps297.reserva.ui.favorites.FavoritesFragment;
@@ -30,6 +32,9 @@ public class HomeFragment extends Fragment {
     private RecyclerView restaurantRV;
     private RestaurantViewModel restaurantViewModel;
 
+    private FavoriteRestaurantsByClientsViewModel favoriteRestaurantsByClientsViewModel;
+    private LoggedInUserViewModel loggedInUserViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -39,7 +44,13 @@ public class HomeFragment extends Fragment {
 
         List<Restaurant> restaurants = restaurantViewModel.getAll();
 
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), (ArrayList<Restaurant>) restaurants);
+        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+        String client_email = loggedInUserViewModel.getUser().email;
+
+        favoriteRestaurantsByClientsViewModel = new ViewModelProvider(this).get(FavoriteRestaurantsByClientsViewModel.class);
+
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), (ArrayList<Restaurant>) restaurants,
+                favoriteRestaurantsByClientsViewModel, client_email);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         restaurantRV.setLayoutManager(linearLayoutManager);
         restaurantRV.setAdapter(restaurantAdapter);

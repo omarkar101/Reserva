@@ -9,7 +9,7 @@ import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 public interface FavoriteRestaurantsByClientsDao {
 
     @Query("SELECT * FROM restaurants where email in " +
-            "(SELECT email from favorite_restaurants_by_clients where client_email = :client_email)")
+            "(SELECT restaurant_email from favorite_restaurants_by_clients where client_email = :client_email)")
     public Restaurant[] getAllFavoriteRestaurants(String client_email);
 
     @Query("DELETE FROM favorite_restaurants_by_clients where client_email=:client_email and restaurant_email=:restaurant_email")
