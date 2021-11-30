@@ -12,15 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
-import lb.edu.aub.cmps297.reserva.models.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 
 public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<RestaurantCurrentReservationAdapter.Viewholder>{
 
     private Context context;
-    private ArrayList<Restaurant> restaurantsModelArrayList;
-    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Restaurant> restaurantsModelArrayList) {
+    private ArrayList<Reservation> reservationArrayList;
+    private String restaurantPhoneNumber;
+    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList) {
         this.context = context;
-        this.restaurantsModelArrayList = restaurantsModelArrayList;
+        this.reservationArrayList = reservationArrayList;
+    }
+    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String restaurantPhoneNumber) {
+        this.context = context;
+        this.reservationArrayList = reservationArrayList;
+        this.restaurantPhoneNumber = restaurantPhoneNumber;
     }
 
     @NonNull
@@ -32,15 +38,15 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantCurrentReservationAdapter.Viewholder holder, int position) {
-        Restaurant restaurant = restaurantsModelArrayList.get(position);
-        holder.userNameandEmail.setText("ali");
-        holder.userPhoneNumber.setText("76846");
-        holder.userSeatsRequested.setText("100");
+        Reservation reservation = reservationArrayList.get(position);
+        holder.userNameandEmail.setText(reservation.restaurantEmail);
+        holder.userPhoneNumber.setText(restaurantPhoneNumber);
+        holder.userSeatsRequested.setText(reservation.seatsRequested);
     }
 
     @Override
     public int getItemCount() {
-        return restaurantsModelArrayList.size();
+        return reservationArrayList.size();
     }
 
 

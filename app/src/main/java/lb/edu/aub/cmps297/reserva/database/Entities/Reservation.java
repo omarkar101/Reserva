@@ -24,6 +24,9 @@ public class Reservation {
     @ColumnInfo(name = "client_email")
     public String clientEmail;
 
+    @ColumnInfo(name = "seats_requested")
+    public int seatsRequested;
+
     @ColumnInfo(name = "status")
     public String status;
 
