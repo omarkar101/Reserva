@@ -40,11 +40,6 @@ public class FavoritesFragment extends Fragment {
         loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
         String client_email = loggedInUserViewModel.getUser().email;
         favRestaurantArrayList = favoriteRestaurantsByClientsViewModel.getAllFavoriteRestaurants(client_email);
-//        for (int i = 0; i < StaticStorage.restaurants.size(); i++) {
-//            if(StaticStorage.restaurants.get(i).isFav()) {
-//                favRestaurantArrayList.add(StaticStorage.restaurants.get(i));
-//            }
-//        }
         favRestaurantCounter.setText(favRestaurantArrayList.size() + " restaurants found");
         restaurantRV = root.findViewById(R.id.idRVRestaurant);
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this.getContext(), favRestaurantArrayList, favoriteRestaurantsByClientsViewModel, client_email);

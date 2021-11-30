@@ -82,39 +82,27 @@ public class RestaurantHomeFragment extends Fragment implements View.OnClickList
 
         restaurantEditInfoBtn.setOnClickListener(this);
 
-        restaurantArrowUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
-                if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) < restaurant.seatsMaxCapacity) {
-                    count++;
-                    restaurantSeatsNumber.setText(count.toString());
-                    restaurantSaveChanges.setEnabled(true);
-                }
-                else{
-                    restaurantSaveChanges.setEnabled(false);
-                }
+        restaurantArrowUp.setOnClickListener(view -> {
+            Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
+            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) < restaurant.seatsMaxCapacity) {
+                count++;
+                restaurantSeatsNumber.setText(count.toString());
+                restaurantSaveChanges.setEnabled(true);
+            }
+            else{
+                restaurantSaveChanges.setEnabled(false);
             }
         });
-        restaurantArrowDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
-                if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) > 0) {
-                    count--;
-                    restaurantSeatsNumber.setText(count.toString());
-                }
-                if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) == 0) {
-                    restaurantSaveChanges.setEnabled(false);
-                }
+        restaurantArrowDown.setOnClickListener(view -> {
+            Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
+            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) > 0) {
+                count--;
+                restaurantSeatsNumber.setText(count.toString());
+            }
+            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) == 0) {
+                restaurantSaveChanges.setEnabled(false);
             }
         });
-//        restaurantSaveChanges.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
 
         return root;
     }

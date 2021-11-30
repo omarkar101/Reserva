@@ -76,13 +76,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
                 holder.favButton.setImageResource(R.drawable.black_favorite);
             }
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context.getApplicationContext(), RestaurantDetails.class);
-                StaticStorage.restaurantChosen = position;
-                context.startActivity(i);
-            }
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(context.getApplicationContext(), RestaurantDetails.class);
+            StaticStorage.restaurantChosen = position;
+            StaticStorage.restaurantChosenEmail = restaurant.email;
+            context.startActivity(i);
         });
     }
 
