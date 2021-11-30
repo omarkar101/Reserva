@@ -78,20 +78,19 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantDescriptionText.setText(restaurant.description);
         restaurantPhoneNumberText.setText(restaurant.phoneNumber);
         restaurantLocationText.setText(restaurant.location);
-        restaurantSeatsNumber.setText("0");
+        restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
 //        restaurantEditInfoBtn.setOnClickListener(this);
 
+        restaurantSaveChanges.setOnClickListener(view ->
+                restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email,Integer.parseInt(restaurantSeatsNumber.getText().toString()))
+        );
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
-            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) < restaurant.seatsMaxCapacity) {
-                count++;
-                restaurantSeatsNumber.setText(count.toString());
-                restaurantSaveChanges.setEnabled(true);
-            }
-            else{
-                restaurantSaveChanges.setEnabled(false);
-            }
+            count++;
+            restaurantSeatsNumber.setText(count.toString());
+            restaurantSaveChanges.setEnabled(true);
+
         });
         restaurantArrowDown.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());

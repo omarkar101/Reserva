@@ -29,4 +29,7 @@ public class RestaurantViewModel extends AndroidViewModel {
     public void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description){
         mRestaurantRepository.updateRestaurantInfo(name, email, phoneNumber, Location, Description);
     }
+    public void updateRestaurantSeatsNumber(String email,int seatsMaxCapacity){
+        mRestaurantRepository.updateRestaurantSeatsNumber(email, seatsMaxCapacity);
+    }
 }
