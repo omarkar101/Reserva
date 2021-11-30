@@ -11,11 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lb.edu.aub.cmps297.reserva.databinding.FragmentProfileBinding;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentReservationsBinding;
-import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
-import lb.edu.aub.cmps297.reserva.views.RestaurantCurrentReservationAdapter;
-import lb.edu.aub.cmps297.reserva.views.RestaurantIncomingRequestsAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantCurrentReservationAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantIncomingRequestsAdapter;
 
 public class ReservationsFragment extends Fragment {
     private FragmentReservationsBinding binding;

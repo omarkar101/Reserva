@@ -1,4 +1,4 @@
-package lb.edu.aub.cmps297.reserva.views;
+package lb.edu.aub.cmps297.reserva.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

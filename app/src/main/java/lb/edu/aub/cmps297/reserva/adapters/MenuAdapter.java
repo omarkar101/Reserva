@@ -1,13 +1,10 @@
-package lb.edu.aub.cmps297.reserva.views;
+package lb.edu.aub.cmps297.reserva.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
-import lb.edu.aub.cmps297.reserva.StaticStorage;
-import lb.edu.aub.cmps297.reserva.models.Restaurant;
-import lb.edu.aub.cmps297.reserva.ui.restauarant.RestaurantDetails;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.Viewholder>{
     private Context context;
