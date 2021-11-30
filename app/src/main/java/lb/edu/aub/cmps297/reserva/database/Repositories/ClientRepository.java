@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 
 import lb.edu.aub.cmps297.reserva.database.AppDatabase;
 import lb.edu.aub.cmps297.reserva.database.DAO.ClientDao;
+import lb.edu.aub.cmps297.reserva.database.DAO.RestaurantDao;
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 
 public class ClientRepository {
@@ -69,6 +70,30 @@ public class ClientRepository {
         @Override
         protected Client doInBackground(final String... params) {
             return mAsyncTaskDao.findByEmail(params[0]);
+        }
+    }
+
+    public void updateClientInfo(String name, String email, String phoneNumber) {
+        try {
+            new updateClientInfoAsyncTask(mClientDao).execute(name,email,phoneNumber).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateClientInfoAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private ClientDao mAsyncTaskDao;
+
+        updateClientInfoAsyncTask(ClientDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateClientInfo(params[0],params[1],params[2]);
+            return null;
         }
     }
 }

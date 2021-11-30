@@ -43,7 +43,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/idUserProfileClientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -55,10 +55,10 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/email_address"
+            android:id="@+id/IdUserProfileClientEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
+            android:layout_below="@+id/idUserProfileClientName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
@@ -68,10 +68,10 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/mobile"
+            android:id="@+id/idUserProfileClientPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
+            android:layout_below="@+id/idUserProfileClientName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:fontFamily="sans-serif"
@@ -94,20 +94,6 @@
             android:layout_marginTop="40dp"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/idUserProfileEditUserInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:elevation="0dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Change User Info"
-                android:textColor="@color/white" />
-
 
             <Button
                 android:id="@+id/idUserProfileYourReservationsBtn"
@@ -121,20 +107,6 @@
                 android:elevation="0dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Your Reservations"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/idUserProfileLogOutBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:elevation="0dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Log Out"
                 android:textColor="@color/white" />
 
 
