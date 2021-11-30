@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,14 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lb.edu.aub.cmps297.reserva.R;
-import lb.edu.aub.cmps297.reserva.StaticStorage;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.FavoriteRestaurantsByClientsViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentHomeBinding;
-import lb.edu.aub.cmps297.reserva.ui.favorites.FavoritesFragment;
-import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
 
 public class HomeFragment extends Fragment {
 

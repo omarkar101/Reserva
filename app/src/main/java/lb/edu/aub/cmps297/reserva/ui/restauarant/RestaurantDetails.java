@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +13,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 import lb.edu.aub.cmps297.reserva.models.Menu;
-import lb.edu.aub.cmps297.reserva.views.MenuAdapter;
-import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.MenuAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
 
 public class RestaurantDetails extends AppCompatActivity {
     private ImageView restaurantImg;

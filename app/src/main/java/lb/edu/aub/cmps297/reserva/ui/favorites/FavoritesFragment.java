@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.R;
-import lb.edu.aub.cmps297.reserva.StaticStorage;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.FavoriteRestaurantsByClientsViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentFavoritesBinding;
-import lb.edu.aub.cmps297.reserva.views.RestaurantAdapter;
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
 
 public class FavoritesFragment extends Fragment {
 
