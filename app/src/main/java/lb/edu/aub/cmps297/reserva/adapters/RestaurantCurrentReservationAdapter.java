@@ -33,9 +33,9 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     @Override
     public void onBindViewHolder(@NonNull RestaurantCurrentReservationAdapter.Viewholder holder, int position) {
         Restaurant restaurant = restaurantsModelArrayList.get(position);
-        holder.userNameandEmail.setText(restaurant.getName());
-        holder.userPhoneNumber.setText(restaurant.getCellPhone());
-        holder.userSeatsRequested.setText(restaurant.getNumSeats());
+        holder.userNameandEmail.setText("ali");
+        holder.userPhoneNumber.setText("76846");
+        holder.userSeatsRequested.setText("100");
     }
 
     @Override

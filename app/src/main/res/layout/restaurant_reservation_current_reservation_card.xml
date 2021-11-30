@@ -62,7 +62,7 @@
                 android:backgroundTint="#92938E"
                 android:layout_gravity="right"
                 android:fontFamily="@font/montserrat"
-                android:text="End Reservation"
+                android:text="Cancel Reservation"
                 android:textColor="@color/white"
                 android:textSize="12dp" />
         </LinearLayout>

@@ -33,9 +33,9 @@ public class RestaurantIncomingRequestsAdapter extends RecyclerView.Adapter<Rest
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Restaurant restaurant = restaurantsModelArrayList.get(position);
-        holder.userNameandEmail.setText(restaurant.getName());
-        holder.userPhoneNumber.setText(restaurant.getCellPhone());
-        holder.userSeatsRequested.setText(restaurant.getNumSeats());
+        holder.userNameandEmail.setText("ali");
+        holder.userPhoneNumber.setText("76846");
+        holder.userSeatsRequested.setText("100");
     }
 
     @Override

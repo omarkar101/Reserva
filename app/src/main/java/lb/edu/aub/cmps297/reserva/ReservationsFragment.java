@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
 import lb.edu.aub.cmps297.reserva.databinding.FragmentReservationsBinding;
 import lb.edu.aub.cmps297.reserva.adapters.RestaurantCurrentReservationAdapter;
 import lb.edu.aub.cmps297.reserva.adapters.RestaurantIncomingRequestsAdapter;
@@ -34,11 +35,11 @@ public class ReservationsFragment extends Fragment {
         incomingRequestsRV.setAdapter(incomingRequestsAdapter);
 
 
-
         RestaurantCurrentReservationAdapter currentReservationAdapter = new RestaurantCurrentReservationAdapter(this.getContext(),StaticStorage.restaurants);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         currentReservationsRV.setLayoutManager(linearLayoutManager2);
         currentReservationsRV.setAdapter(currentReservationAdapter);
+
         return root;
     }
 
