@@ -43,7 +43,7 @@
                 android:text="Sign Up as a User"/>
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/idSignUpClientNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -59,7 +59,7 @@
                 android:textSize="14dp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/idSignUpClientEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -74,7 +74,7 @@
                 android:textSize="14dp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/idSignUpClientPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

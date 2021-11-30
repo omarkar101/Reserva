@@ -1,7 +1,5 @@
 package lb.edu.aub.cmps297.reserva.views;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,22 +12,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import lb.edu.aub.cmps297.reserva.R;
-import lb.edu.aub.cmps297.reserva.models.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.FavoriteRestaurantsByClientsViewModel;
 import lb.edu.aub.cmps297.reserva.ui.restauarant.RestaurantDetails;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Viewholder>{
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Viewholder> {
+
+    private boolean isFav(List<Restaurant> favRestaurants, Restaurant restaurant) {
+        for(int i = 0; i < favRestaurants.size(); i++) {
+            if(favRestaurants.get(i).email.equals(restaurant.email)) return true;
+        }
+        return false;
+    }
+
+    private FavoriteRestaurantsByClientsViewModel favoriteRestaurantsByClientsViewModel;
+    private String client_email;
+
     private Context context;
-    private ArrayList<Restaurant> restaurantsModelArrayList;
+    private ArrayList<Restaurant> restaurantsEntityArrayList;
     public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurantsModelArrayList) {
         this.context = context;
-        this.restaurantsModelArrayList = restaurantsModelArrayList;
+        this.restaurantsEntityArrayList = restaurantsModelArrayList;
     }
+
+    public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurantsModelArrayList,
+                             FavoriteRestaurantsByClientsViewModel favoriteRestaurantsByClientsViewModel, String client_email) {
+        this.context = context;
+        this.restaurantsEntityArrayList = restaurantsModelArrayList;
+        this.favoriteRestaurantsByClientsViewModel = favoriteRestaurantsByClientsViewModel;
+        this.client_email = client_email;
+    }
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,18 +58,21 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        Restaurant restaurant = restaurantsModelArrayList.get(position);
-        holder.restaurantName.setText(restaurant.getName());
-        holder.restaurantImg.setImageResource(restaurant.getImg());
-        holder.restaurantPhoneNumber.setText(restaurant.getCellPhone());
-        holder.restaurantLocation.setText(restaurant.getLocation());
-        holder.favButton.setImageResource(restaurant.isFav() ? R.drawable.black_favorite : R.drawable.white_favorite);
+        Restaurant restaurant = restaurantsEntityArrayList.get(position);
+        holder.restaurantName.setText(restaurant.name);
+        holder.restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+        holder.restaurantPhoneNumber.setText(restaurant.phoneNumber);
+        holder.restaurantLocation.setText(restaurant.location);
+
+        List<Restaurant> favRestaurants = favoriteRestaurantsByClientsViewModel.getAllFavoriteRestaurants(client_email);
+
+        holder.favButton.setImageResource(isFav(favRestaurants, restaurant) ? R.drawable.black_favorite : R.drawable.white_favorite);
         holder.favButton.setOnClickListener(v -> {
-            if(restaurant.isFav()) {
-                restaurant.setFav(false);
+            if(isFav(favRestaurants, restaurant)) {
+                favoriteRestaurantsByClientsViewModel.removeFavoriteRestaurant(client_email, restaurant.email);
                 holder.favButton.setImageResource(R.drawable.white_favorite);
             } else {
-                restaurant.setFav(true);
+                favoriteRestaurantsByClientsViewModel.addFavoriteRestaurant(client_email, restaurant.email);
                 holder.favButton.setImageResource(R.drawable.black_favorite);
             }
         });
@@ -67,7 +88,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return restaurantsModelArrayList.size();
+        return restaurantsEntityArrayList.size();
     }
 
     public static class Viewholder extends RecyclerView.ViewHolder {
