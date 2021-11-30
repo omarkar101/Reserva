@@ -34,11 +34,11 @@ public class Restaurant {
     @ColumnInfo(name = "seats_max_capacity")
     public int seatsMaxCapacity;
 
-//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "profile_image")
-//    private byte[] profileImage;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "profile_image")
+    public byte[] profileImage;
 
-//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "menu_image")
-//    private byte[] menuImage;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "menu_image")
+    public byte[] menuImage;
 
     public Restaurant(@NonNull String email) {
         this.email = email;
