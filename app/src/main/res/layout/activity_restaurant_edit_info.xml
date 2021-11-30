@@ -23,18 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoTitle" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoRestaurantNameTitle" />
-
     <TextView
         android:id="@+id/idRestaurantEditInfoTitle"
         android:layout_width="wrap_content"
@@ -62,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoTitle" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/idRestaurantEditInfoRestaurantNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -83,7 +71,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoRestaurantNameEditText" />
 
     <EditText
         android:id="@+id/idRestaurantEditInfoDescriptionText"

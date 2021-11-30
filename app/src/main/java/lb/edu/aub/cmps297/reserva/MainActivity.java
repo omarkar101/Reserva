@@ -7,6 +7,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.NavInflater;
@@ -17,6 +18,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
 
+import lb.edu.aub.cmps297.reserva.Enums.UserType;
+import lb.edu.aub.cmps297.reserva.database.DAO.LoggedInUserDao;
+import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.databinding.ActivityMainBinding;
 import lb.edu.aub.cmps297.reserva.models.Menu;
 import lb.edu.aub.cmps297.reserva.models.Restaurant;
@@ -24,6 +29,7 @@ import lb.edu.aub.cmps297.reserva.models.Restaurant;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private BottomNavigationView navigationView;
+    private LoggedInUserViewModel loggedInUserViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
@@ -48,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 
+        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
+        if(UserType.RESTAURANT.name().equals(loggedInUser.userType)) {
+            StaticStorage.isRestaurant = true;
+        }
+        else{
+            StaticStorage.isRestaurant = false;
+        }
         if (StaticStorage.isRestaurant) {
             NavGraph graph = navController.getGraph();
             graph.setStartDestination(R.id.navigation_restaurant_home);

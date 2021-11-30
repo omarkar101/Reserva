@@ -3,6 +3,7 @@ package lb.edu.aub.cmps297.reserva.database.Repositories;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import lb.edu.aub.cmps297.reserva.database.AppDatabase;
@@ -18,6 +19,31 @@ public class RestaurantRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         mRestaurantDao = db.restaurantDao();
     }
+
+    public List<Restaurant> getAll() {
+        try {
+            return new getAllAsyncTask(mRestaurantDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private static class getAllAsyncTask extends AsyncTask<Void, Void, List<Restaurant>> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        getAllAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected List<Restaurant> doInBackground(final Void... params) {
+            return mAsyncTaskDao.getAll();
+        }
+    }
+
 
     public boolean insert(Restaurant restaurant) {
         Restaurant restaurantFromDb = null;
@@ -76,6 +102,30 @@ public class RestaurantRepository {
         @Override
         protected Restaurant doInBackground(final String... params) {
             return mAsyncTaskDao.findByEmail(params[0]);
+        }
+    }
+
+    public void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description) {
+        try {
+            new updateRestaurantInfoAsyncTask(mRestaurantDao).execute(name,email,phoneNumber,Location,Description).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantInfoAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantInfoAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantInfo(params[0],params[1],params[2],params[3],params[4]);
+            return null;
         }
     }
 }

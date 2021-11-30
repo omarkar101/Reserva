@@ -14,8 +14,8 @@ public interface LoggedInUserDao {
     @Query("SELECT * FROM logged_in_user")
     List<LoggedInUser> getAll();
 
-    @Query("SELECT * FROM logged_in_user WHERE email = :email")
-    LoggedInUser findByEmail(String email);
+    @Query("SELECT * FROM logged_in_user LIMIT 1")
+    LoggedInUser[] getUser();
 
     @Insert
     void insertAll(LoggedInUser... loggedInUser);

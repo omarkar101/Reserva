@@ -25,6 +25,9 @@ public class Restaurant {
     @ColumnInfo(name = "description")
     public String description;
 
+    @ColumnInfo(name = "location")
+    public String location;
+
     @ColumnInfo(name = "seats_available")
     public int seatsAvailable;
 
@@ -40,5 +43,10 @@ public class Restaurant {
         this.name = name;
         this.password = password;
         this.email = email;
+        seatsMaxCapacity = 0;
+        seatsAvailable = 0;
+        description = "Description of your restuarant goes here. To edit, please press the Edit Info button";
+        location = "Location of your restuarant goes here. To edit, please press the Edit Info button";
+        phoneNumber = "Phone number of your restuarant goes here. To edit, please press the Edit Info button";
     }
 }

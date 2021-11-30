@@ -23,4 +23,7 @@ public interface RestaurantDao {
 
     @Delete
     void delete(Restaurant restaurant);
+
+    @Query("UPDATE restaurants SET name=:name,phone_number=:phoneNumber,location=:Location,description=:Description where email=:email")
+    void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description);
 }
