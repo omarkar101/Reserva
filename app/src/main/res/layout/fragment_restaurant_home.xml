@@ -11,8 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/idRestaurantHomeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/idRestarauntHomeImg"
@@ -41,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="sans-serif-medium"
             android:text="Description"
             android:textSize="20sp"
@@ -65,59 +64,66 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="sans-serif-medium"
             android:text="Call"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeDescriptionText" />
 
         <TextView
             android:id="@+id/idRestaurantHomePhoneNumberText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomePhoneNumberTitle"
-            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeDescriptionText" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomePhoneNumberTitle" />
 
         <TextView
             android:id="@+id/idRestaurantHomeLocationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="sans-serif-medium"
             android:text="Location"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomePhoneNumberTitle" />
-
-        <TextView
-            android:id="@+id/idRestaurantHomeLocationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeLocationTitle"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomePhoneNumberText" />
 
         <TextView
-            android:id="@+id/idRestaurantHomeSeatsTitle"
-            android:layout_width="100dp"
+            android:id="@+id/idRestaurantHomeLocationText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Total number of seats"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:paddingBottom="100dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeLocationTitle" />
+
+        <TextView
+            android:id="@+id/idRestaurantHomeSeatsTitle"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Total number of seats:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeLocationText" />
 
         <TextView
             android:id="@+id/idRestaurantHomeSeatsNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:paddingHorizontal="20dp"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsTitle"
@@ -127,18 +133,18 @@
             android:id="@+id/idRestaurantHomeArrowUpBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="16dp"
             android:src="@android:drawable/arrow_up_float"
+            app:layout_constraintBottom_toTopOf="@+id/idRestaurantHomeSeatsNumber"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
-            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeLocationText" />
+            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
 
         <ImageButton
             android:id="@+id/idRestaurantHomeArrowDownBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="16dp"
             android:src="@android:drawable/arrow_down_float"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantHomeSeatsNumber"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeArrowUpBtn" />
 
@@ -146,12 +152,15 @@
             android:id="@+id/idRestaurantHomeSaveChangesBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
             android:enabled="false"
             android:text="Save changes"
-            app:backgroundTint="#FF0000"
-            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantHomeSeatsTitle"
+            android:textColor="@color/white"
+            android:backgroundTint="@android:color/holo_red_light"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/idRestaurantHomeSeatsTitle" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantHomeArrowDownBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

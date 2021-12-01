@@ -41,7 +41,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:text="Sign Up as a User"/>
+                    android:text="Sign Up as a Client"/>
 
                 <EditText
                     android:id="@+id/idSignUpClientNameEditText"
