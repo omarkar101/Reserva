@@ -1,6 +1,8 @@
 package lb.edu.aub.cmps297.reserva;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
@@ -48,6 +52,10 @@ public class RestaurantHomeFragment extends Fragment {
         binding = FragmentRestaurantHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+//        hek men jeeb el sura men database mafrud
+
+
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
         menuImgs.add(R.drawable.menu1);
         menuImgs.add(R.drawable.menu2);
@@ -78,20 +86,21 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantDescriptionText.setText(restaurant.description);
         restaurantPhoneNumberText.setText(restaurant.phoneNumber);
         restaurantLocationText.setText(restaurant.location);
-        restaurantSeatsNumber.setText("0");
+        restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
 //        restaurantEditInfoBtn.setOnClickListener(this);
+        
 
+
+        restaurantSaveChanges.setOnClickListener(view ->
+                restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email,Integer.parseInt(restaurantSeatsNumber.getText().toString()))
+        );
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
-            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) < restaurant.seatsMaxCapacity) {
-                count++;
-                restaurantSeatsNumber.setText(count.toString());
-                restaurantSaveChanges.setEnabled(true);
-            }
-            else{
-                restaurantSaveChanges.setEnabled(false);
-            }
+            count++;
+            restaurantSeatsNumber.setText(count.toString());
+            restaurantSaveChanges.setEnabled(true);
+
         });
         restaurantArrowDown.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());

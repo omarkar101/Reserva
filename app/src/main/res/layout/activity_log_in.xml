@@ -12,9 +12,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginHorizontal="16dp"
         app:cardBackgroundColor="#FFFCFC"
         app:cardElevation="16dp"
         app:cardMaxElevation="16dp"
@@ -23,80 +21,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="Log In"/>
-
-            <EditText
-                android:id="@+id/idLoginEmailEditText"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/signup_edt_back"
-                android:ems="10"
-                android:fontFamily="@font/montserrat"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_baseline_email_24"
-                android:hint="Email"
-                android:padding="8dp"
-                android:textSize="14dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="40dp">
 
-            <EditText
-                android:id="@+id/idLoginPasswordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/signup_edt_back"
-                android:drawableStart="@drawable/ic_baseline_vpn_key_24"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:drawablePadding="5dp"
-                android:ems="10"
-                android:fontFamily="@font/montserrat"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:text="Log In"/>
 
-            <Button
-                android:id="@+id/idLoginLoginAsClientBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Login as client"
-                android:textColor="#fff" />
+                <EditText
+                    android:id="@+id/idLoginEmailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/signup_edt_back"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:hint="Email"
+                    android:padding="8dp"
+                    android:textSize="14dp" />
 
-            <Button
-                android:id="@+id/idLoginLoginAsRestaurantBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Login as restaurant"
-                android:textColor="#fff" />
+                <EditText
+                    android:id="@+id/idLoginPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/signup_edt_back"
+                    android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="8dp"
+                    android:textSize="14dp" />
 
+                <Button
+                    android:id="@+id/idLoginLoginAsClientBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="30dp"
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Log in as client"
+                    android:textColor="#fff" />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/idLoginLoginAsRestaurantBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Log in as restaurant"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 

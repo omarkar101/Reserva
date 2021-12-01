@@ -39,7 +39,7 @@
                     android:textSize="24dp" />
 
                 <Button
-                    android:id="@+id/button12"
+                    android:id="@+id/idRestaurantReservationsSeatsRemainingText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -47,6 +47,7 @@
                     android:backgroundTint="#92938E"
                     android:fontFamily="@font/montserrat_bold"
                     android:paddingVertical="15dp"
+                    android:enabled="false"
                     android:text="Seats Remaining: 10"
                     android:textColor="@color/white" />
 

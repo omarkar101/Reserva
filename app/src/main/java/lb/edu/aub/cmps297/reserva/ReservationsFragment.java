@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,13 @@ public class ReservationsFragment extends Fragment {
     private FragmentReservationsBinding binding;
     private RecyclerView incomingRequestsRV;
     private RecyclerView currentReservationsRV;
+    private Button seatsRemaining;
+
+    private Restaurant restaurant;
+
+    private LoggedInUserViewModel loggedInUserViewModel;
+
+    private RestaurantViewModel restaurantViewModel;
 
     private RestaurantViewModel restaurantViewModel;
     private ReservationViewModel reservationViewModel;
@@ -41,10 +49,16 @@ public class ReservationsFragment extends Fragment {
         View root = binding.getRoot();
         incomingRequestsRV = root.findViewById(R.id.idRVRestaurantIncomingRequests);
         currentReservationsRV = root.findViewById(R.id.idRVRestaurantCurrentReservations);
+        seatsRemaining = root.findViewById(R.id.idRestaurantReservationsSeatsRemainingText);
 
-        restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
         loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+        restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
+        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
+
+        restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
+
         reservationViewModel = new ViewModelProvider(this).get(ReservationViewModel.class);
+        seatsRemaining.setText("Seats Remaining: "+Integer.valueOf(restaurant.seatsAvailable).toString());
 
         RestaurantIncomingRequestsAdapter incomingRequestsAdapter = new RestaurantIncomingRequestsAdapter(this.getContext(), StaticStorage.restaurants);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
