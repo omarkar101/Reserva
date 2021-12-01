@@ -40,6 +40,9 @@ public class Restaurant {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB,name = "menu_image")
     public byte[] menuImage;
 
+    @ColumnInfo(name = "profile_uri")
+    public String profileUri;
+
     public Restaurant(@NonNull String email) {
         this.email = email;
     }

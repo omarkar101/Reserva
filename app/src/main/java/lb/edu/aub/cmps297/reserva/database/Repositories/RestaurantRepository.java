@@ -1,6 +1,7 @@
 package lb.edu.aub.cmps297.reserva.database.Repositories;
 
 import android.app.Application;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 
@@ -157,16 +158,20 @@ public class RestaurantRepository {
 
     public void updateRestaurantProfileImage(String email,byte[] profileImage) {
         try {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(profileImage, StandardCharsets.UTF_8)).get();
+//            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(profileImage, StandardCharsets.UTF_8)).get();
+                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email.getBytes(StandardCharsets.UTF_8), profileImage).get();
             }
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    private static class updateRestaurantProfileImageAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class updateRestaurantProfileImageAsyncTask extends AsyncTask<byte[], Void, Void> {
 
         private RestaurantDao mAsyncTaskDao;
 
@@ -175,10 +180,36 @@ public class RestaurantRepository {
         }
 
         @Override
+        protected Void doInBackground(byte [] ... params) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                mAsyncTaskDao.updateRestaurantProfileImage(params[0],params[1].getBytes(StandardCharsets.UTF_8));
+//            }
+            mAsyncTaskDao.updateRestaurantProfileImage(String.valueOf(params[0]),params[1]);
+            return null;
+        }
+
+    }
+
+    public void updateRestaurantProfileImageUsingUri(String email,String profileImagePath) {
+        try {
+            new updateRestaurantProfileImageUsingUriAsyncTask(mRestaurantDao).execute(email, profileImagePath).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantProfileImageUsingUriAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantProfileImageUsingUriAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
         protected Void doInBackground(final String... params) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                mAsyncTaskDao.updateRestaurantProfileImage(params[0],params[1].getBytes(StandardCharsets.UTF_8));
-            }
+            mAsyncTaskDao.updateRestaurantProfileImageUsingUri(params[0], params[1]);
             return null;
         }
     }
