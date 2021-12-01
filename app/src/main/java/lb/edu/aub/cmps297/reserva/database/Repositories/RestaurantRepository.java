@@ -155,10 +155,10 @@ public class RestaurantRepository {
         }
     }
 
-    public void updateRestaurantProfileImage(String email,byte[] menuImage) {
+    public void updateRestaurantProfileImage(String email,byte[] profileImage) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(menuImage, StandardCharsets.UTF_8)).get();
+                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(profileImage, StandardCharsets.UTF_8)).get();
             }
         } catch (ExecutionException e) {
             e.printStackTrace();

@@ -90,6 +90,7 @@ public class RestaurantHomeFragment extends Fragment {
 
         if (restaurant.profileImage != null && restaurant.profileImage.length > 0){
             Bitmap bmp = BitmapFactory.decodeByteArray(restaurant.profileImage, 0, restaurant.profileImage.length);
+
             if (bmp != null){
                 restaurantImg.setImageBitmap(Bitmap.createScaledBitmap(bmp, restaurantImg.getWidth(), restaurantImg.getHeight(), false));
             }
