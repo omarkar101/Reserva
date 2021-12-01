@@ -17,16 +17,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/idRestaurantCardRL">
+        android:id="@+id/idRestaurantCardRL"
+        android:paddingVertical="10dp"
+        android:paddingEnd="10dp">
 
         <ImageView
             android:id="@+id/idRestaurantImg"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,59 +41,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintLeft_toRightOf="@id/idRestaurantImg"
             app:layout_constraintTop_toTopOf="parent"
-
             android:text="@string/app_name"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
         <ImageButton
+            android:id="@+id/btnFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/white_favorite"
             android:backgroundTint="@color/white"
-            android:id="@+id/btnFavorite"/>
+            android:src="@drawable/white_favorite"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/idRestaurantName"
+            app:layout_constraintBottom_toBottomOf="@id/idRestaurantName"/>
 
         <TextView
             android:id="@+id/idRestaurantPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="Call:"
+            android:text="Call: "
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@+id/idRestaurantName"
             app:layout_constraintTop_toBottomOf="@+id/idRestaurantName" />
 
         <TextView
             android:id="@+id/idRestaurantPhoneNumberText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantPhoneNumber"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantPhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/idRestaurantPhoneNumber" />
+
 
         <TextView
             android:id="@+id/idRestaurantLocationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="Location:"
+            android:text="Location: "
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@+id/idRestaurantPhoneNumber"
-            app:layout_constraintTop_toBottomOf="@+id/idRestaurantPhoneNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/idRestaurantPhoneNumberText" />
 
         <TextView
             android:id="@+id/idRestaurantLocationText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/idRestaurantLocationTitle"
             app:layout_constraintStart_toEndOf="@+id/idRestaurantLocationTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/idRestaurantLocationTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
