@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import lb.edu.aub.cmps297.reserva.Enums.UserType;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.ReservationViewModel;
 
 public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<RestaurantCurrentReservationAdapter.Viewholder>{
 
@@ -21,6 +23,8 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     private ArrayList<Reservation> reservationArrayList;
     private String phoneNumber;
     private UserType userType;
+    private ReservationViewModel reservationViewModel;
+
     public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
@@ -30,6 +34,14 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         this.reservationArrayList = reservationArrayList;
         this.phoneNumber = phoneNumber;
         this.userType = userType;
+    }
+
+    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String phoneNumber, UserType userType, ReservationViewModel reservationViewModel) {
+        this.context = context;
+        this.reservationArrayList = reservationArrayList;
+        this.phoneNumber = phoneNumber;
+        this.userType = userType;
+        this.reservationViewModel = reservationViewModel;
     }
 
     @NonNull
@@ -49,6 +61,9 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         }
         holder.userPhoneNumber.setText(phoneNumber);
         holder.userSeatsRequested.setText(reservation.seatsRequested);
+        holder.clientCancelReservationBtn.setOnClickListener(v -> {
+
+        });
     }
 
     @Override
@@ -60,12 +75,13 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         private TextView userNameandEmail;
         private TextView userPhoneNumber;
         private TextView userSeatsRequested;
+        private Button clientCancelReservationBtn;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             userNameandEmail = itemView.findViewById(R.id.idUserCurrentReservationText);
             userPhoneNumber = itemView.findViewById(R.id.idUserCurrentReservationPhoneNumberText);
             userSeatsRequested = itemView.findViewById(R.id.idUserCurrentReservationSeatsRequestedText);
-
+            clientCancelReservationBtn = itemView.findViewById(R.id.idUserCurrentReservationEndReservationBtn);
         }
     }
 }
