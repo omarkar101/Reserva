@@ -34,6 +34,8 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
     private ImageButton restaurantImg;
 
+    byte[] imageInByte;
+
     private Restaurant restaurant;
     private LoggedInUserViewModel loggedInUserViewModel;
     private RestaurantViewModel restaurantViewModel;
@@ -65,8 +67,6 @@ public class RestaurantEditInfo extends AppCompatActivity {
         restaurantPhoneNumber.setText(restaurant.phoneNumber);
         restaurantLocation.setText(restaurant.location);
 
-//        Bitmap bitmap = ((BitmapDrawable)restaurantImg.getDrawable()).getBitmap();
-
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +75,9 @@ public class RestaurantEditInfo extends AppCompatActivity {
                 restaurantViewModel.updateRestaurantInfo(restaurantName.getText().toString(),
                         restaurant.email,restaurantPhoneNumber.getText().toString(),
                         restaurantLocation.getText().toString(),restaurantDescription.getText().toString());
+
+                restaurantViewModel.updateRestaurantProfileImage(restaurant.email,imageInByte);
+
                 finish();
             }
         });
@@ -96,12 +99,16 @@ public class RestaurantEditInfo extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
             imageView.setImageURI(selectedImage);
 
+
             // hon bede hot el sura bel database
+            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            imageInByte = baos.toByteArray();
 
-            // hay mnaamila bel profile activity hek men jeeb el sura men database
-            // imageView.setImageBitmap(BitmapFactory.decodeStream(is)); // is hiye el blob
 
-//            OutputStream out = new ByteArrayOutputStream(imageView);
+
+
         }
     }
 }

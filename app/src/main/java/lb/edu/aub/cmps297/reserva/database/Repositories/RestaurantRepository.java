@@ -2,7 +2,9 @@ package lb.edu.aub.cmps297.reserva.database.Repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.os.Build;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -149,6 +151,34 @@ public class RestaurantRepository {
         @Override
         protected Void doInBackground(final String... params) {
             mAsyncTaskDao.updateRestaurantSeatsNumber(params[0],Integer.parseInt(params[1]));
+            return null;
+        }
+    }
+
+    public void updateRestaurantProfileImage(String email,byte[] menuImage) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(menuImage, StandardCharsets.UTF_8)).get();
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantProfileImageAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantProfileImageAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                mAsyncTaskDao.updateRestaurantProfileImage(params[0],params[1].getBytes(StandardCharsets.UTF_8));
+            }
             return null;
         }
     }

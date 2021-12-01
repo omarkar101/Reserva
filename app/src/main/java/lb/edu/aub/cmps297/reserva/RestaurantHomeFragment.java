@@ -40,7 +40,7 @@ public class RestaurantHomeFragment extends Fragment {
     private ImageButton restaurantArrowUp;
     private ImageButton restaurantArrowDown;
     private Button restaurantSaveChanges;
-//    private Button restaurantEditInfoBtn;
+
 
     private LoggedInUserViewModel loggedInUserViewModel;
 
@@ -52,8 +52,6 @@ public class RestaurantHomeFragment extends Fragment {
         binding = FragmentRestaurantHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-//        hek men jeeb el sura men database mafrud
 
 
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
@@ -69,7 +67,7 @@ public class RestaurantHomeFragment extends Fragment {
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
         if(restaurant == null) return root;
 
-//        restaurant = new Restaurant("Food stop", "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp, menu);
+
         restaurantImg = root.findViewById(R.id.idRestarauntHomeImg);
         restaurantName = root.findViewById(R.id.idRestaurantHomeName);
         restaurantDescriptionText = root.findViewById(R.id.idRestaurantHomeDescriptionText);
@@ -79,26 +77,29 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantArrowUp = root.findViewById(R.id.idRestaurantHomeArrowUpBtn);
         restaurantArrowDown = root.findViewById(R.id.idRestaurantHomeArrowDownBtn);
         restaurantSaveChanges = root.findViewById(R.id.idRestaurantHomeSaveChangesBtn);
-//        restaurantEditInfoBtn = root.findViewById(R.id.idRestaurantHomeEditInfo);
+
 
         restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+
         restaurantName.setText(restaurant.name);
         restaurantDescriptionText.setText(restaurant.description);
         restaurantPhoneNumberText.setText(restaurant.phoneNumber);
         restaurantLocationText.setText(restaurant.location);
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
-//        restaurantEditInfoBtn.setOnClickListener(this);
+
+        if (restaurant.profileImage != null && restaurant.profileImage.length > 0){
+            Bitmap bmp = BitmapFactory.decodeByteArray(restaurant.profileImage, 0, restaurant.profileImage.length);
+            if (bmp != null){
+                restaurantImg.setImageBitmap(Bitmap.createScaledBitmap(bmp, restaurantImg.getWidth(), restaurantImg.getHeight(), false));
+            }
+        }
 
 
-        InputStream is = new ByteArrayInputStream(restaurant.profileImage);
-        Bitmap bitmap = BitmapFactory.decodeStream(is);
-        restaurantImg.setImageBitmap(bitmap);
+        restaurantSaveChanges.setOnClickListener(view -> {
+            restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email, Integer.parseInt(restaurantSeatsNumber.getText().toString()));
 
-
-        restaurantSaveChanges.setOnClickListener(view ->
-                restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email,Integer.parseInt(restaurantSeatsNumber.getText().toString()))
-        );
+        });
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
             count++;
