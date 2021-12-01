@@ -89,11 +89,7 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
 //        restaurantEditInfoBtn.setOnClickListener(this);
-
-
-        InputStream is = new ByteArrayInputStream(restaurant.profileImage);
-        Bitmap bitmap = BitmapFactory.decodeStream(is);
-        restaurantImg.setImageBitmap(bitmap);
+        
 
 
         restaurantSaveChanges.setOnClickListener(view ->
