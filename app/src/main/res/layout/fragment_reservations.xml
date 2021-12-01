@@ -34,6 +34,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Reservations"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="24dp" />
 
@@ -66,8 +67,11 @@
                     android:layout_below="@+id/relative1"
                     android:fontFamily="sans-serif-light"
                     android:text="Incoming Requests:"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/idRVRestaurantIncomingRequests"
@@ -92,6 +96,8 @@
                     android:layout_below="@+id/relative1"
                     android:fontFamily="sans-serif-light"
                     android:text="Current Reservations:"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
