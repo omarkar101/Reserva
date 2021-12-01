@@ -18,7 +18,7 @@ import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.ReservationViewModel;
 
-public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<RestaurantCurrentReservationAdapter.Viewholder>{
+public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<RestaurantCurrentReservationAdapter.Viewholder> {
 
     private Context context;
     private ArrayList<Reservation> reservationArrayList;
@@ -37,7 +37,8 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         this.userType = userType;
     }
 
-    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String phoneNumber, UserType userType, ReservationViewModel reservationViewModel) {
+    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String phoneNumber,
+                                               UserType userType, ReservationViewModel reservationViewModel) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
         this.phoneNumber = phoneNumber;
@@ -57,6 +58,12 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         Reservation reservation = reservationArrayList.get(position);
         boolean canceled = reservation.status.equals(ReservationStatus.CANCELED_BY_CLIENT.name()) ||
                 reservation.status.equals(ReservationStatus.CANCELED_BY_RESTAURANT.name());
+        holder.userReservationStatusTextView.setText(reservation.status);
+        if(userType.equals(UserType.CLIENT)) {
+            holder.userCurrentReservationTitleTextView.setText("Restaurant:");
+        } else {
+            holder.userCurrentReservationTitleTextView.setText("Client:");
+        }
         if(canceled) {
             holder.clientCancelReservationBtn.setText("Canceled");
             holder.clientCancelReservationBtn.setEnabled(false);
@@ -69,9 +76,17 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
                 holder.clientCancelReservationBtn.setEnabled(false);
                 holder.clientCancelReservationBtn.setClickable(false);
                 reservationViewModel.updateReservation(reservation.id.toString(), ReservationStatus.CANCELED_BY_CLIENT.name());
+                holder.userReservationStatusTextView.setText(ReservationStatus.CANCELED_BY_CLIENT.name());
             });
         } else {
             holder.userNameandEmail.setText(reservation.clientEmail);
+            holder.clientCancelReservationBtn.setOnClickListener(v -> {
+                reservationViewModel.updateReservation(reservation.id.toString(), ReservationStatus.CANCELED_BY_RESTAURANT.name());
+                holder.clientCancelReservationBtn.setText("Canceled");
+                holder.clientCancelReservationBtn.setEnabled(false);
+                holder.clientCancelReservationBtn.setClickable(false);
+                holder.userReservationStatusTextView.setText(ReservationStatus.CANCELED_BY_RESTAURANT.name());
+            });
         }
         holder.userPhoneNumber.setText(phoneNumber);
         holder.userSeatsRequested.setText(reservation.seatsRequested);
@@ -86,6 +101,8 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
         private TextView userNameandEmail;
         private TextView userPhoneNumber;
         private TextView userSeatsRequested;
+        private TextView userReservationStatusTextView;
+        private TextView userCurrentReservationTitleTextView;
         private Button clientCancelReservationBtn;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +110,8 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
             userPhoneNumber = itemView.findViewById(R.id.idUserCurrentReservationPhoneNumberText);
             userSeatsRequested = itemView.findViewById(R.id.idUserCurrentReservationSeatsRequestedText);
             clientCancelReservationBtn = itemView.findViewById(R.id.idUserCurrentReservationEndReservationBtn);
+            userReservationStatusTextView = itemView.findViewById(R.id.idUserCurrentReservationStatus);
+            userCurrentReservationTitleTextView = itemView.findViewById(R.id.idUserCurrentReservationTitleText);
         }
     }
 }
