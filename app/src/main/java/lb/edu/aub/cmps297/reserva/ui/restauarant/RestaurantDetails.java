@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.R;
@@ -105,22 +106,13 @@ public class RestaurantDetails extends AppCompatActivity {
             }
         });
         restaurantReserve.setOnClickListener(view -> {
-            if (restaurantReserve.getText() == "Cancel Reservation"){
                 restaurantReserve.setText("Reserve");
                 restaurantArrowDown.setClickable(true);
-                restaurantArrowUp.setClickable(true);
-                restaurantArrowDown.setEnabled(true);
                 restaurantArrowUp.setEnabled(true);
-                reservationViewModel.updateReservation(loggedInUser.email, chosenRestaurant.email, ReservationStatus.CANCELED_BY_CLIENT.name());
-            }
-            else {
-                restaurantReserve.setText("Cancel Reservation");
-                restaurantArrowDown.setClickable(false);
-                restaurantArrowUp.setClickable(false);
-                restaurantArrowDown.setEnabled(false);
-                restaurantArrowUp.setEnabled(false);
-                reservationViewModel.insert(loggedInUser.email, chosenRestaurant.email, restaurantSeatsNumber.getText().toString(), ReservationStatus.PENDING.name());
-            }
+                reservationViewModel.insert(loggedInUser.email, chosenRestaurant.email,
+                        restaurantSeatsNumber.getText().toString(), ReservationStatus.PENDING.name());
+            Toast.makeText(RestaurantDetails.this,
+                    "Successfully reserved, please check you reservations page.", Toast.LENGTH_LONG).show();
         });
     }
 }

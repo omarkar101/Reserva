@@ -39,7 +39,7 @@ public class UserReservations extends AppCompatActivity {
         ArrayList<Reservation> reservations = reservationViewModel.getClientReservations(loggedInUser.email);
 
         RestaurantCurrentReservationAdapter restaurantCurrentReservationAdapter =
-                new RestaurantCurrentReservationAdapter(this, reservations, client.phoneNumber, UserType.CLIENT);
+                new RestaurantCurrentReservationAdapter(this, reservations, client.phoneNumber, UserType.CLIENT, reservationViewModel);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         currentReservationsRV.setLayoutManager(linearLayoutManager);
         currentReservationsRV.setAdapter(restaurantCurrentReservationAdapter);

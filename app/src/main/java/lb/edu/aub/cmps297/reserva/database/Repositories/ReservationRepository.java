@@ -70,8 +70,8 @@ public class ReservationRepository {
         }
     }
 
-    public void updateReservation(String client_email, String restaurant_email, String status) {
-        new updateReservationAsyncTask(mReservationDao).execute(client_email, restaurant_email, status);
+    public void updateReservation(String id, String status) {
+        new updateReservationAsyncTask(mReservationDao).execute(id, status);
     }
 
     private static class updateReservationAsyncTask extends AsyncTask<String, Void, Void> {
@@ -84,7 +84,7 @@ public class ReservationRepository {
 
         @Override
         protected Void doInBackground(final String... params) {
-            mAsyncTaskDao.updateReservation(params[0], params[1], params[2]);
+            mAsyncTaskDao.updateReservation(params[0], params[1]);
             return null;
         }
     }

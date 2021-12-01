@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.Enums.UserType;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
@@ -54,16 +55,26 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     @Override
     public void onBindViewHolder(@NonNull RestaurantCurrentReservationAdapter.Viewholder holder, int position) {
         Reservation reservation = reservationArrayList.get(position);
+        boolean canceled = reservation.status.equals(ReservationStatus.CANCELED_BY_CLIENT.name()) ||
+                reservation.status.equals(ReservationStatus.CANCELED_BY_RESTAURANT.name());
+        if(canceled) {
+            holder.clientCancelReservationBtn.setText("Canceled");
+            holder.clientCancelReservationBtn.setEnabled(false);
+            holder.clientCancelReservationBtn.setClickable(false);
+        }
         if(userType == UserType.CLIENT) {
             holder.userNameandEmail.setText(reservation.restaurantEmail);
+            holder.clientCancelReservationBtn.setOnClickListener(v -> {
+                holder.clientCancelReservationBtn.setText("Canceled");
+                holder.clientCancelReservationBtn.setEnabled(false);
+                holder.clientCancelReservationBtn.setClickable(false);
+                reservationViewModel.updateReservation(reservation.id.toString(), ReservationStatus.CANCELED_BY_CLIENT.name());
+            });
         } else {
             holder.userNameandEmail.setText(reservation.clientEmail);
         }
         holder.userPhoneNumber.setText(phoneNumber);
         holder.userSeatsRequested.setText(reservation.seatsRequested);
-        holder.clientCancelReservationBtn.setOnClickListener(v -> {
-
-        });
     }
 
     @Override

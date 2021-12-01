@@ -1,5 +1,7 @@
 package lb.edu.aub.cmps297.reserva.database.Entities;
 
+import android.content.Intent;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -16,7 +18,7 @@ import androidx.room.PrimaryKey;
 public class Reservation {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    public int id;
+    public Integer id;
 
     @ColumnInfo(name = "restaurant_email")
     public String restaurantEmail;

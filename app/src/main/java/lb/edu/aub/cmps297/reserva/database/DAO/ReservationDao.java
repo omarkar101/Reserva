@@ -17,9 +17,8 @@ public interface ReservationDao {
     @Query("SELECT * from reservations WHERE client_email = :client_email")
     List<Reservation> getClientReservations(String client_email);
 
-    @Query("UPDATE reservations SET status=:status " +
-            "where client_email=:client_email and restaurant_email=:restaurant_email")
-    void updateReservation(String client_email, String restaurant_email, String status);
+    @Query("UPDATE reservations SET status=:status WHERE id=:id")
+    void updateReservation(String id, String status);
 
     @Query("INSERT INTO reservations (client_email, restaurant_email, seats_requested, status)" +
             "VALUES (:client_email, :restaurant_email, :seats_requested, :status)")

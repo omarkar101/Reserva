@@ -26,8 +26,8 @@ public class ReservationViewModel extends AndroidViewModel {
         return reservationRepository.getClientReservations(client_email);
     }
 
-    public void updateReservation(String client_email, String restaurant_email, String status) {
-        reservationRepository.updateReservation(client_email, restaurant_email, status);
+    public void updateReservation(String id, String status) {
+        reservationRepository.updateReservation(id, status);
     }
 
     public void insert(String client_email, String restaurant_email, String seats_requested, String status) {
