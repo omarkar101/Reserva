@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
+import lb.edu.aub.cmps297.reserva.Enums.UserType;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
@@ -38,9 +38,7 @@ public class ReservationsFragment extends Fragment {
 
     private RestaurantViewModel restaurantViewModel;
 
-    private RestaurantViewModel restaurantViewModel;
     private ReservationViewModel reservationViewModel;
-    private LoggedInUserViewModel loggedInUserViewModel;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -66,13 +64,10 @@ public class ReservationsFragment extends Fragment {
         incomingRequestsRV.setAdapter(incomingRequestsAdapter);
 
 
-        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
-        Restaurant restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
-
         ArrayList<Reservation> reservations = reservationViewModel.getRestaurantReservations(restaurant.email);
 
         RestaurantCurrentReservationAdapter currentReservationAdapter =
-                new RestaurantCurrentReservationAdapter(this.getContext(), reservations, restaurant.phoneNumber);
+                new RestaurantCurrentReservationAdapter(this.getContext(), reservations, restaurant.phoneNumber, UserType.RESTAURANT);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         currentReservationsRV.setLayoutManager(linearLayoutManager2);
         currentReservationsRV.setAdapter(currentReservationAdapter);

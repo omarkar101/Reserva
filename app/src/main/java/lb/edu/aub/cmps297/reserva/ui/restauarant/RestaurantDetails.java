@@ -13,9 +13,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
+import lb.edu.aub.cmps297.reserva.database.Entities.Client;
+import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
+import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.ReservationViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 import lb.edu.aub.cmps297.reserva.models.Menu;
 import lb.edu.aub.cmps297.reserva.adapters.MenuAdapter;
@@ -35,6 +41,9 @@ public class RestaurantDetails extends AppCompatActivity {
     Context context;
 
     private RestaurantViewModel restaurantViewModel;
+    private ReservationViewModel reservationViewModel;
+    private LoggedInUserViewModel loggedInUserViewModel;
+
     private Restaurant chosenRestaurant;
 
     @Override
@@ -43,6 +52,10 @@ public class RestaurantDetails extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_details);
 
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
+        reservationViewModel = new ViewModelProvider(this).get(ReservationViewModel.class);
+        loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
+
+        LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
 
 //        restaurant = StaticStorage.restaurants.get(StaticStorage.restaurantChosen);
         restaurantImg = findViewById(R.id.idRestarauntDetialsImg);
@@ -65,6 +78,7 @@ public class RestaurantDetails extends AppCompatActivity {
         restaurantDescriptionText.setText(chosenRestaurant.description);
         restaurantPhoneNumberText.setText(chosenRestaurant.phoneNumber);
         restaurantLocationText.setText(chosenRestaurant.location);
+
         restaurantSeatsNumber.setText("0");
 
 
@@ -97,6 +111,7 @@ public class RestaurantDetails extends AppCompatActivity {
                 restaurantArrowUp.setClickable(true);
                 restaurantArrowDown.setEnabled(true);
                 restaurantArrowUp.setEnabled(true);
+                reservationViewModel.updateReservation(loggedInUser.email, chosenRestaurant.email, ReservationStatus.CANCELED_BY_CLIENT.name());
             }
             else {
                 restaurantReserve.setText("Cancel Reservation");
@@ -104,21 +119,8 @@ public class RestaurantDetails extends AppCompatActivity {
                 restaurantArrowUp.setClickable(false);
                 restaurantArrowDown.setEnabled(false);
                 restaurantArrowUp.setEnabled(false);
+                reservationViewModel.insert(loggedInUser.email, chosenRestaurant.email, restaurantSeatsNumber.getText().toString(), ReservationStatus.PENDING.name());
             }
-
         });
-
-
-//        restaurantViewMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(context, RestaurantMenu.class);
-//                context.startActivity(i);
-//            }
-//        });
-
     }
-
-
-
 }

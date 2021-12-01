@@ -47,7 +47,7 @@ public class ReservationRepository {
 
     public ArrayList<Reservation> getClientReservations(String client_email) {
         try {
-            return new getRestaurantReservationsAsyncTask(mReservationDao).execute(client_email).get();
+            return new getClientReservationsAsyncTask(mReservationDao).execute(client_email).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -89,9 +89,9 @@ public class ReservationRepository {
         }
     }
 
-    public void insert(String client_email, String restaurant_email, String status) {
+    public void insert(String client_email, String restaurant_email, String seats_requested, String status) {
         try {
-            new insertAsyncTask(mReservationDao).execute(client_email, restaurant_email, status).get();
+            new insertAsyncTask(mReservationDao).execute(client_email, restaurant_email, seats_requested, status).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -109,7 +109,7 @@ public class ReservationRepository {
 
         @Override
         protected Void doInBackground(final String... params) {
-            mAsyncTaskDao.insert(params[0], params[1], params[2]);
+            mAsyncTaskDao.insert(params[0], params[1], params[2], params[3]);
             return null;
         }
     }

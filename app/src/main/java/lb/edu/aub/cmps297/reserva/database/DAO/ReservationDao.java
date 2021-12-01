@@ -10,6 +10,7 @@ import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 
 @Dao
 public interface ReservationDao {
+
     @Query("SELECT * from reservations WHERE restaurant_email = :restaurant_email")
     List<Reservation> getRestaurantReservations(String restaurant_email);
 
@@ -20,7 +21,7 @@ public interface ReservationDao {
             "where client_email=:client_email and restaurant_email=:restaurant_email")
     void updateReservation(String client_email, String restaurant_email, String status);
 
-    @Query("INSERT INTO reservations (client_email, restaurant_email, status)" +
-            "VALUES (:client_email, :restaurant_email, :status)")
-    void insert(String client_email, String restaurant_email, String status);
+    @Query("INSERT INTO reservations (client_email, restaurant_email, seats_requested, status)" +
+            "VALUES (:client_email, :restaurant_email, :seats_requested, :status)")
+    void insert(String client_email, String restaurant_email, String seats_requested, String status);
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import lb.edu.aub.cmps297.reserva.Enums.UserType;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 
@@ -18,15 +19,17 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
 
     private Context context;
     private ArrayList<Reservation> reservationArrayList;
-    private String restaurantPhoneNumber;
+    private String phoneNumber;
+    private UserType userType;
     public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
     }
-    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String restaurantPhoneNumber) {
+    public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String phoneNumber, UserType userType) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
-        this.restaurantPhoneNumber = restaurantPhoneNumber;
+        this.phoneNumber = phoneNumber;
+        this.userType = userType;
     }
 
     @NonNull
@@ -39,8 +42,12 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     @Override
     public void onBindViewHolder(@NonNull RestaurantCurrentReservationAdapter.Viewholder holder, int position) {
         Reservation reservation = reservationArrayList.get(position);
-        holder.userNameandEmail.setText(reservation.restaurantEmail);
-        holder.userPhoneNumber.setText(restaurantPhoneNumber);
+        if(userType == UserType.CLIENT) {
+            holder.userNameandEmail.setText(reservation.restaurantEmail);
+        } else {
+            holder.userNameandEmail.setText(reservation.clientEmail);
+        }
+        holder.userPhoneNumber.setText(phoneNumber);
         holder.userSeatsRequested.setText(reservation.seatsRequested);
     }
 
@@ -48,7 +55,6 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     public int getItemCount() {
         return reservationArrayList.size();
     }
-
 
     public static class Viewholder extends RecyclerView.ViewHolder {
         private TextView userNameandEmail;

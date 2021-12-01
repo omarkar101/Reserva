@@ -25,14 +25,15 @@ public class Reservation {
     public String clientEmail;
 
     @ColumnInfo(name = "seats_requested")
-    public int seatsRequested;
+    public String seatsRequested;
 
     @ColumnInfo(name = "status")
     public String status;
 
-    public Reservation(String restaurantEmail, String clientEmail, String status) {
+    public Reservation(String restaurantEmail, String clientEmail, String seatsRequested, String status) {
         this.restaurantEmail = restaurantEmail;
         this.clientEmail = clientEmail;
         this.status = status;
+        this.seatsRequested = seatsRequested;
     }
 }
