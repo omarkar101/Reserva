@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import java.io.File;
 
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 
@@ -32,7 +35,7 @@ public class ChangeUserInfo extends AppCompatActivity {
     private Client client;
     private LoggedInUserViewModel loggedInUserViewModel;
     private ClientViewModel clientViewModel;
-
+    String selectedImageNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,25 @@ public class ChangeUserInfo extends AppCompatActivity {
         Name.setText(client.name);
         PhoneNumber.setText(client.phoneNumber);
 
+        if(client.profileUri != null){
+            File finalFile = new File(client.profileUri);
+            userImg.setImageURI(Uri.fromFile(finalFile));
+        }
+        else{
+            userImg.setImageResource(R.drawable.profile);
+        }
+
+
         SaveChangesBtn = findViewById(R.id.idUserEditInfoSaveChanges);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clientViewModel.updateClientInfo(Name.getText().toString(),
                         client.email,PhoneNumber.getText().toString());
+
+                if(selectedImageNew != null){
+                    clientViewModel.updateUserProfileImageUsingUri(client.email, selectedImageNew);
+                }
                 finish();
             }
         });
@@ -85,6 +101,25 @@ public class ChangeUserInfo extends AppCompatActivity {
             Uri selectedImage = data.getData();
             ImageView imageView = findViewById(R.id.idUserEditInfoUserImgEdit);
             imageView.setImageURI(selectedImage);
+
+            File finalFile = new File(getRealPathFromURI(selectedImage));
+
+            selectedImageNew = finalFile.getAbsolutePath();
+
         }
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String path = "";
+        if (getContentResolver() != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                path = cursor.getString(idx);
+                cursor.close();
+            }
+        }
+        return path;
     }
 }

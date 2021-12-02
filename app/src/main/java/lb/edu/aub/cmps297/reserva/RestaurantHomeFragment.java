@@ -1,13 +1,30 @@
 package lb.edu.aub.cmps297.reserva;
 
+import static android.provider.CalendarContract.CalendarCache.URI;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +33,25 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Objects;
+
+import lb.edu.aub.cmps297.reserva.database.AppDatabase;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
@@ -40,7 +72,7 @@ public class RestaurantHomeFragment extends Fragment {
     private ImageButton restaurantArrowUp;
     private ImageButton restaurantArrowDown;
     private Button restaurantSaveChanges;
-//    private Button restaurantEditInfoBtn;
+
 
     private LoggedInUserViewModel loggedInUserViewModel;
 
@@ -51,9 +83,6 @@ public class RestaurantHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentRestaurantHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
-//        hek men jeeb el sura men database mafrud
 
 
         ArrayList<Integer> menuImgs = new ArrayList<Integer>();
@@ -69,7 +98,7 @@ public class RestaurantHomeFragment extends Fragment {
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
         if(restaurant == null) return root;
 
-//        restaurant = new Restaurant("Food stop", "37214721", 100, "dfji23jfdoui3wenoc", "wmjenfnwe", R.drawable.ic_dashboard_black_24dp, menu);
+
         restaurantImg = root.findViewById(R.id.idRestarauntHomeImg);
         restaurantName = root.findViewById(R.id.idRestaurantHomeName);
         restaurantDescriptionText = root.findViewById(R.id.idRestaurantHomeDescriptionText);
@@ -79,22 +108,32 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantArrowUp = root.findViewById(R.id.idRestaurantHomeArrowUpBtn);
         restaurantArrowDown = root.findViewById(R.id.idRestaurantHomeArrowDownBtn);
         restaurantSaveChanges = root.findViewById(R.id.idRestaurantHomeSaveChangesBtn);
-//        restaurantEditInfoBtn = root.findViewById(R.id.idRestaurantHomeEditInfo);
 
-        restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+
+//        restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+
         restaurantName.setText(restaurant.name);
         restaurantDescriptionText.setText(restaurant.description);
         restaurantPhoneNumberText.setText(restaurant.phoneNumber);
         restaurantLocationText.setText(restaurant.location);
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
-//        restaurantEditInfoBtn.setOnClickListener(this);
-        
 
 
-        restaurantSaveChanges.setOnClickListener(view ->
-                restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email,Integer.parseInt(restaurantSeatsNumber.getText().toString()))
-        );
+//        1 way
+        if (restaurant.profileUri != null){
+            File finalFile = new File(restaurant.profileUri);
+            restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        }
+        else{
+            restaurantImg.setImageResource(R.drawable.profile);
+        }
+
+
+        restaurantSaveChanges.setOnClickListener(view -> {
+            restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email, Integer.parseInt(restaurantSeatsNumber.getText().toString()));
+
+        });
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
             count++;
@@ -107,6 +146,7 @@ public class RestaurantHomeFragment extends Fragment {
             if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) > 0) {
                 count--;
                 restaurantSeatsNumber.setText(count.toString());
+                restaurantSaveChanges.setEnabled(true);
             }
             if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) == 0) {
                 restaurantSaveChanges.setEnabled(false);
@@ -116,9 +156,6 @@ public class RestaurantHomeFragment extends Fragment {
         return root;
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        Intent intent = new Intent(this.getContext(), RestaurantEditInfo.class);
-//        startActivity(intent);
-//    }
 }
+
+

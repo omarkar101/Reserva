@@ -156,6 +156,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoLocationText" />
 
+
+    <TextView
+        android:id="@+id/idRestaurantEditInfoMenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Menu"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/idRestaurantEditInfoSaveChangesBtn"
+        app:layout_constraintStart_toStartOf="@+id/idRestaurantEditInfoImage"
+        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoRestaurantImgEdit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/idRestaurantEditInfoRestaurantMenuEdit"
+        android:layout_width="246dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoMenuTitle"
+        app:srcCompat="@color/black" />
+
     <Button
         android:id="@+id/idRestaurantEditInfoSaveChangesBtn"
         android:layout_width="wrap_content"
@@ -167,7 +194,7 @@
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoRestaurantImgEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/idRestaurantEditInfoRestaurantMenuEdit" />
 
     <Button
         android:id="@+id/idRestaurantEditInfoCancelBtn"

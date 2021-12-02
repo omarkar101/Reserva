@@ -24,4 +24,8 @@ public class ClientViewModel extends AndroidViewModel {
     public void updateClientInfo(String name, String email, String phoneNumber){
         mClientRepository.updateClientInfo(name, email, phoneNumber);
     }
+
+    public void updateUserProfileImageUsingUri(String email,String profileImagePath){
+        mClientRepository.updateUserProfileImageUsingUri(email, profileImagePath);
+    }
 }

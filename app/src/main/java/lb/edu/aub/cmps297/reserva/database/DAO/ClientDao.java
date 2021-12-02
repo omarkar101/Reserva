@@ -25,4 +25,7 @@ public interface ClientDao {
 
     @Query("UPDATE clients SET name=:name,phone_number=:phoneNumber where email=:email")
     void updateClientInfo(String name, String email, String phoneNumber);
+
+    @Query("UPDATE clients SET profile_uri=:profileImagePath where email=:email")
+    void updateUserProfileImageUsingUri(String email, String profileImagePath);
 }

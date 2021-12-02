@@ -1,6 +1,7 @@
 package lb.edu.aub.cmps297.reserva;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
@@ -30,6 +34,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private TextView userPhoneNumber;
     private TextView userEmail;
 
+    private ImageView clientProfileImg;
+
     private LoggedInUserViewModel loggedInUserViewModel;
     private Client client;
     private ClientViewModel clientViewModel;
@@ -42,6 +48,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         userName = root.findViewById(R.id.idUserProfileClientName);
         userPhoneNumber = root.findViewById(R.id.idUserProfileClientPhoneNumber);
         userEmail = root.findViewById(R.id.IdUserProfileClientEmail);
+
+        clientProfileImg = root.findViewById(R.id.idClientProfileImg);
 
         userReservationsBtn = root.findViewById(R.id.idUserProfileYourReservationsBtn);
 
@@ -57,6 +65,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         userName.setText(client.name);
         userPhoneNumber.setText(client.phoneNumber);
         userEmail.setText(client.email);
+
+
+        if (client.profileUri != null){
+            File finalFile = new File(client.profileUri);
+            clientProfileImg.setImageURI(Uri.fromFile(finalFile));
+        }
+        else{
+            clientProfileImg.setImageResource(R.drawable.profile);
+        }
 
         return root;
     }
