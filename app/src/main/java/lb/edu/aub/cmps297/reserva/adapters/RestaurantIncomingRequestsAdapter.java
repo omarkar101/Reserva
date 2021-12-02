@@ -74,9 +74,6 @@ public class RestaurantIncomingRequestsAdapter extends RecyclerView.Adapter<Rest
             holder.userIncomingRequestRejectBtn.setEnabled(false);
             holder.userIncomingRequestRejectBtn.setClickable(false);
             reservationViewModel.updateReservation(reservation.id.toString(), ReservationStatus.CANCELED_BY_RESTAURANT.name());
-            Restaurant restaurant = restaurantViewModel.getRestaurant(reservation.restaurantEmail);
-            restaurantViewModel.updateRestaurantSeatsReserved(reservation.restaurantEmail,
-                    restaurant.seatsReserved - Integer.parseInt(reservation.seatsRequested));
             Toast.makeText(RestaurantIncomingRequestsAdapter.this.context, "Rejected!", Toast.LENGTH_LONG).show();
         });
         holder.userNameandEmail.setText(reservation.clientEmail);
