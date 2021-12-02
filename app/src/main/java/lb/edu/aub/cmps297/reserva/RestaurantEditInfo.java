@@ -50,12 +50,16 @@ public class RestaurantEditInfo extends AppCompatActivity {
     private EditText restaurantPhoneNumber;
 
     private ImageButton restaurantImg;
+    private ImageButton menuImg;
+
 
 
     private Restaurant restaurant;
     private LoggedInUserViewModel loggedInUserViewModel;
     private RestaurantViewModel restaurantViewModel;
     String selectedImageNew;
+    String selectedMenuImageNew;
+    boolean isMenuImg;
 
 
 
@@ -64,7 +68,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_edit_info);
 
-
+        menuImg = findViewById(R.id.idRestaurantEditInfoRestaurantMenuEdit);
         restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
         restaurantName = findViewById(R.id.idRestaurantEditInfoRestaurantNameEditText);
         restaurantDescription = findViewById(R.id.idRestaurantEditInfoDescriptionText);
@@ -74,10 +78,22 @@ public class RestaurantEditInfo extends AppCompatActivity {
         restaurantImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isMenuImg = false;
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 3);
             }
         });
+
+        menuImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isMenuImg = true;
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 3);
+            }
+        });
+
+
 
         loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
@@ -96,6 +112,15 @@ public class RestaurantEditInfo extends AppCompatActivity {
             restaurantImg.setImageResource(R.drawable.profile);
         }
 
+        if(restaurant.menuUri != null){
+            File finalFile = new File(restaurant.menuUri);
+            menuImg.setImageURI(Uri.fromFile(finalFile));
+        }
+        else{
+            menuImg.setImageResource(R.drawable.profile);
+        }
+
+
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +133,10 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
                 if(selectedImageNew != null){
                     restaurantViewModel.updateRestaurantProfileImageUsingUri(restaurant.email, selectedImageNew);
+                }
+
+                if (selectedMenuImageNew !=null){
+                    restaurantViewModel.updateRestaurantMenuImageUsingUri(restaurant.email, selectedMenuImageNew);
                 }
                 finish();
             }
@@ -126,14 +155,28 @@ public class RestaurantEditInfo extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && data != null) {
-            Uri selectedImage = data.getData();
-            ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
-            imageView.setImageURI(selectedImage);
+
+            if (isMenuImg){
+                Uri selectedImage = data.getData();
+                ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantMenuEdit);
+                imageView.setImageURI(selectedImage);
 
 
-            File finalFile = new File(getRealPathFromURI(selectedImage));
+                File finalFile = new File(getRealPathFromURI(selectedImage));
 
-            selectedImageNew = finalFile.getAbsolutePath();
+                selectedMenuImageNew = finalFile.getAbsolutePath();
+            }
+            else{
+                Uri selectedImage = data.getData();
+                ImageView imageView = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
+                imageView.setImageURI(selectedImage);
+
+
+                File finalFile = new File(getRealPathFromURI(selectedImage));
+
+                selectedImageNew = finalFile.getAbsolutePath();
+            }
+
 
 
         }

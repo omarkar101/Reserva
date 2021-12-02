@@ -125,6 +125,9 @@ public class RestaurantHomeFragment extends Fragment {
             File finalFile = new File(restaurant.profileUri);
             restaurantImg.setImageURI(Uri.fromFile(finalFile));
         }
+        else{
+            restaurantImg.setImageResource(R.drawable.profile);
+        }
 
 
         restaurantSaveChanges.setOnClickListener(view -> {

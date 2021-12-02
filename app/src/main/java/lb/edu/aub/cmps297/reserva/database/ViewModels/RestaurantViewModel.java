@@ -35,4 +35,8 @@ public class RestaurantViewModel extends AndroidViewModel {
     public void updateRestaurantProfileImageUsingUri(String email,String profileImagePath){
         mRestaurantRepository.updateRestaurantProfileImageUsingUri(email, profileImagePath);
     }
+
+    public void updateRestaurantMenuImageUsingUri(String email,String menuImagePath){
+        mRestaurantRepository.updateRestaurantMenuImageUsingUri(email, menuImagePath);
+    }
 }

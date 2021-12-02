@@ -34,4 +34,7 @@ public interface RestaurantDao {
 
     @Query("UPDATE restaurants SET profile_uri=:profileImagePath where email=:email")
     void updateRestaurantProfileImageUsingUri(String email, String profileImagePath);
+
+    @Query("UPDATE restaurants SET menu_uri=:menuImagePath where email=:email")
+    void updateRestaurantMenuImageUsingUri(String email, String menuImagePath);
 }

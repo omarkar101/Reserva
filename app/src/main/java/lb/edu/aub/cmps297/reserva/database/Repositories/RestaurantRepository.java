@@ -180,4 +180,28 @@ public class RestaurantRepository {
             return null;
         }
     }
+
+    public void updateRestaurantMenuImageUsingUri(String email,String menuImagePath) {
+        try {
+            new updateRestaurantMenuImageUsingUriAsyncTask(mRestaurantDao).execute(email, menuImagePath).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantMenuImageUsingUriAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantMenuImageUsingUriAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantMenuImageUsingUri(params[0], params[1]);
+            return null;
+        }
+    }
 }
