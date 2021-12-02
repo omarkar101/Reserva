@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
@@ -60,7 +63,15 @@ public class RestaurantDetails extends AppCompatActivity {
         restaurantDetailsMenuRV = findViewById(R.id.idRVRestaurantDetailsMenuRV);
 
         chosenRestaurant = restaurantViewModel.getRestaurant(StaticStorage.restaurantChosenEmail);
-        restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+
+
+        if(chosenRestaurant.profileUri != null){
+            File finalFile = new File(chosenRestaurant.profileUri);
+            restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        }
+        else{
+            restaurantImg.setImageResource(R.drawable.profile);
+        }
         restaurantName.setText(chosenRestaurant.name);
         restaurantDescriptionText.setText(chosenRestaurant.description);
         restaurantPhoneNumberText.setText(chosenRestaurant.phoneNumber);

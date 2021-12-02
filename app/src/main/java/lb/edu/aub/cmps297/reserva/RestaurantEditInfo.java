@@ -51,14 +51,11 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
     private ImageButton restaurantImg;
 
-    byte[] imageInByte;
 
     private Restaurant restaurant;
     private LoggedInUserViewModel loggedInUserViewModel;
     private RestaurantViewModel restaurantViewModel;
     String selectedImageNew;
-
-    String filePath;
 
 
 
@@ -67,8 +64,6 @@ public class RestaurantEditInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_edit_info);
 
-//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
 
         restaurantImg = findViewById(R.id.idRestaurantEditInfoRestaurantImgEdit);
         restaurantName = findViewById(R.id.idRestaurantEditInfoRestaurantNameEditText);
@@ -110,7 +105,6 @@ public class RestaurantEditInfo extends AppCompatActivity {
                         restaurant.email,restaurantPhoneNumber.getText().toString(),
                         restaurantLocation.getText().toString(),restaurantDescription.getText().toString());
 
-//                restaurantViewModel.updateRestaurantProfileImage(restaurant.email,imageInByte);
 
                 if(selectedImageNew != null){
                     restaurantViewModel.updateRestaurantProfileImageUsingUri(restaurant.email, selectedImageNew);
@@ -139,41 +133,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
             File finalFile = new File(getRealPathFromURI(selectedImage));
 
-//            Log.d("kaka", finalFile.getAbsolutePath());
-
-
-
-
-/*            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                String encodedString = Base64.getEncoder().encodeToString(finalFile.getAbsolutePath().getBytes(StandardCharsets.UTF_8));
-                Log.d("kaka", encodedString);
-                selectedImageNew = encodedString;
-            }*/
-
-
             selectedImageNew = finalFile.getAbsolutePath();
-
-//            selectedImageNew = selectedImage.toString();
-
-
-
-
-
-//            selectedImageNew = selectedImage;
-//            File file = new File(selectedImage.getPath());//create path from uri
-//            final String[] split = file.getPath().split(":");//split the path.
-//            filePath = split[1];//assign it to a string(your choice).
-
-//            String sdCard = Environment.getExternSaltorageDirectory().toString();
-
-            // hon bede hot el sura bel database
-//            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            imageInByte = baos.toByteArray();
-//            Log.d("kaka", String.valueOf(imageInByte));
-
-
 
 
         }

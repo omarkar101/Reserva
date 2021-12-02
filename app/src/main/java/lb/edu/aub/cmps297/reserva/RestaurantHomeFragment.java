@@ -143,6 +143,7 @@ public class RestaurantHomeFragment extends Fragment {
             if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) > 0) {
                 count--;
                 restaurantSeatsNumber.setText(count.toString());
+                restaurantSaveChanges.setEnabled(true);
             }
             if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) == 0) {
                 restaurantSaveChanges.setEnabled(false);

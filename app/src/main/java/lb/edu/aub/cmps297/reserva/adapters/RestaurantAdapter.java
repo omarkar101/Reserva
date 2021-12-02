@@ -2,6 +2,7 @@ package lb.edu.aub.cmps297.reserva.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +62,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Restaurant restaurant = restaurantsEntityArrayList.get(position);
         holder.restaurantName.setText(restaurant.name);
-        holder.restaurantImg.setImageResource(R.drawable.ic_dashboard_black_24dp);
+        if (restaurant.profileUri != null){
+            File finalFile = new File(restaurant.profileUri);
+            holder.restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        }
         holder.restaurantPhoneNumber.setText(restaurant.phoneNumber);
         holder.restaurantLocation.setText(restaurant.location);
 

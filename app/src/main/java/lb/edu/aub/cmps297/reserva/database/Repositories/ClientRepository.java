@@ -96,4 +96,29 @@ public class ClientRepository {
             return null;
         }
     }
+
+    public void updateUserProfileImageUsingUri(String email,String profileImagePath) {
+        try {
+            new updateUserProfileImageUsingUriAsyncTask(mClientDao).execute(email, profileImagePath).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateUserProfileImageUsingUriAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private ClientDao mAsyncTaskDao;
+
+        updateUserProfileImageUsingUriAsyncTask(ClientDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateUserProfileImageUsingUri(params[0], params[1]);
+            return null;
+        }
+    }
+
 }
