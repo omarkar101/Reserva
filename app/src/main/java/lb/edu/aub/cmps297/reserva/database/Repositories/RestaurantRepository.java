@@ -1,8 +1,11 @@
 package lb.edu.aub.cmps297.reserva.database.Repositories;
 
 import android.app.Application;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -162,6 +165,41 @@ public class RestaurantRepository {
             e.printStackTrace();
         }
     }
+
+    public void updateRestaurantProfileImageUsingUri(String email,String profileImagePath) {
+        try {
+            new updateRestaurantProfileImageUsingUriAsyncTask(mRestaurantDao).execute(email, profileImagePath).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantProfileImageUsingUriAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantProfileImageUsingUriAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantProfileImageUsingUri(params[0], params[1]);
+            return null;
+        }
+    }
+
+    public void updateRestaurantMenuImageUsingUri(String email,String menuImagePath) {
+        try {
+            new updateRestaurantMenuImageUsingUriAsyncTask(mRestaurantDao).execute(email, menuImagePath).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static class updateRestaurantSeatsReservedAsyncTask extends AsyncTask<String, Void, Void> {
 
         private RestaurantDao mAsyncTaskDao;
@@ -169,10 +207,24 @@ public class RestaurantRepository {
         updateRestaurantSeatsReservedAsyncTask(RestaurantDao dao) {
             mAsyncTaskDao = dao;
         }
-
         @Override
         protected Void doInBackground(final String... params) {
             mAsyncTaskDao.updateRestaurantSeatsReserved(params[0], Integer.parseInt(params[1]));
+            return null;
+        }
+    }
+
+    private static class updateRestaurantMenuImageUsingUriAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantMenuImageUsingUriAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantMenuImageUsingUri(params[0], params[1]);
             return null;
         }
     }

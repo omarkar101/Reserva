@@ -1,5 +1,7 @@
 package lb.edu.aub.cmps297.reserva.database.DAO;
 
+import android.net.Uri;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -32,4 +34,9 @@ public interface RestaurantDao {
 
     @Query("UPDATE restaurants SET seats_reserved=:seats_reserved WHERE email=:email")
     void updateRestaurantSeatsReserved(String email, int seats_reserved);
+    @Query("UPDATE restaurants SET profile_uri=:profileImagePath where email=:email")
+    void updateRestaurantProfileImageUsingUri(String email, String profileImagePath);
+
+    @Query("UPDATE restaurants SET menu_uri=:menuImagePath where email=:email")
+    void updateRestaurantMenuImageUsingUri(String email, String menuImagePath);
 }

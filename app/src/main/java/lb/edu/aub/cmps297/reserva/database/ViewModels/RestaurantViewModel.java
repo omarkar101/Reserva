@@ -35,4 +35,11 @@ public class RestaurantViewModel extends AndroidViewModel {
     public void updateRestaurantSeatsReserved(String email, int seatsReserved) {
         mRestaurantRepository.updateRestaurantSeatsReserved(email, Integer.valueOf(seatsReserved).toString());
     }
+    public void updateRestaurantProfileImageUsingUri(String email,String profileImagePath){
+        mRestaurantRepository.updateRestaurantProfileImageUsingUri(email, profileImagePath);
+    }
+
+    public void updateRestaurantMenuImageUsingUri(String email,String menuImagePath){
+        mRestaurantRepository.updateRestaurantMenuImageUsingUri(email, menuImagePath);
+    }
 }
