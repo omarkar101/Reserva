@@ -24,9 +24,12 @@ public interface RestaurantDao {
     @Delete
     void delete(Restaurant restaurant);
 
-    @Query("UPDATE restaurants SET name=:name,phone_number=:phoneNumber,location=:Location,description=:Description where email=:email")
+    @Query("UPDATE restaurants SET name=:name,phone_number=:phoneNumber,location=:Location,description=:Description WHERE email=:email")
     void updateRestaurantInfo(String name, String email, String phoneNumber, String Location, String Description);
 
-    @Query("UPDATE restaurants SET seats_max_capacity=:seatsMaxCapacity where email=:email")
+    @Query("UPDATE restaurants SET seats_max_capacity=:seatsMaxCapacity WHERE email=:email")
     void updateRestaurantSeatsNumber(String email,int seatsMaxCapacity);
+
+    @Query("UPDATE restaurants SET seats_reserved=:seats_reserved WHERE email=:email")
+    void updateRestaurantSeatsReserved(String email, int seats_reserved);
 }

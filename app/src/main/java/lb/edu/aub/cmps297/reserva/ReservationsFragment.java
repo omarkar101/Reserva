@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.Enums.UserType;
-import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
@@ -58,29 +57,29 @@ public class ReservationsFragment extends Fragment {
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
 
         reservationViewModel = new ViewModelProvider(this).get(ReservationViewModel.class);
-        seatsRemaining.setText("Seats Remaining: "+Integer.valueOf(restaurant.seatsAvailable).toString());
+        seatsRemaining.setText(("Seats Remaining: "+Integer.valueOf(restaurant.seatsMaxCapacity - restaurant.seatsReserved).toString()));
 
         ArrayList<Reservation> incomingReservations = reservationViewModel.getRestaurantReservations(restaurant.email);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            incomingReservations.removeIf(x -> x.status.equals(ReservationStatus.PENDING.name()));
+            incomingReservations.removeIf(x -> !x.status.equals(ReservationStatus.PENDING.name()));
         }
 
         clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
         RestaurantIncomingRequestsAdapter incomingRequestsAdapter =
-                new RestaurantIncomingRequestsAdapter(this.getContext(), incomingReservations, reservationViewModel, clientViewModel);
+                new RestaurantIncomingRequestsAdapter(this.getContext(), incomingReservations, reservationViewModel, clientViewModel, restaurantViewModel);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         incomingRequestsRV.setLayoutManager(linearLayoutManager1);
         incomingRequestsRV.setAdapter(incomingRequestsAdapter);
 
         ArrayList<Reservation> currentReservations = reservationViewModel.getRestaurantReservations(restaurant.email);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            currentReservations.removeIf(x -> !x.status.equals(ReservationStatus.PENDING.name()));
+            currentReservations.removeIf(x -> x.status.equals(ReservationStatus.PENDING.name()));
         }
 
         RestaurantCurrentReservationAdapter currentReservationAdapter =
                 new RestaurantCurrentReservationAdapter(this.getContext(), currentReservations,
-                        restaurant.phoneNumber, UserType.RESTAURANT, reservationViewModel);
+                        restaurant.phoneNumber, UserType.RESTAURANT, reservationViewModel, restaurantViewModel);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         currentReservationsRV.setLayoutManager(linearLayoutManager2);
         currentReservationsRV.setAdapter(currentReservationAdapter);

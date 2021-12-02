@@ -16,7 +16,9 @@ import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.Enums.UserType;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
+import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.ReservationViewModel;
+import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
 
 public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<RestaurantCurrentReservationAdapter.Viewholder> {
 
@@ -25,7 +27,7 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     private String phoneNumber;
     private UserType userType;
     private ReservationViewModel reservationViewModel;
-
+    private RestaurantViewModel restaurantViewModel;
     public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
@@ -38,12 +40,13 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
     }
 
     public RestaurantCurrentReservationAdapter(Context context, ArrayList<Reservation> reservationArrayList, String phoneNumber,
-                                               UserType userType, ReservationViewModel reservationViewModel) {
+                                               UserType userType, ReservationViewModel reservationViewModel, RestaurantViewModel restaurantViewModel) {
         this.context = context;
         this.reservationArrayList = reservationArrayList;
         this.phoneNumber = phoneNumber;
         this.userType = userType;
         this.reservationViewModel = reservationViewModel;
+        this.restaurantViewModel = restaurantViewModel;
     }
 
     @NonNull
@@ -76,6 +79,9 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
                 holder.clientCancelReservationBtn.setEnabled(false);
                 holder.clientCancelReservationBtn.setClickable(false);
                 reservationViewModel.updateReservation(reservation.id.toString(), ReservationStatus.CANCELED_BY_CLIENT.name());
+                Restaurant restaurant = restaurantViewModel.getRestaurant(reservation.restaurantEmail);
+                restaurantViewModel.updateRestaurantSeatsReserved(restaurant.email,
+                        restaurant.seatsReserved - Integer.parseInt(reservation.seatsRequested));
                 holder.userReservationStatusTextView.setText(ReservationStatus.CANCELED_BY_CLIENT.name());
             });
         } else {
@@ -86,6 +92,9 @@ public class RestaurantCurrentReservationAdapter extends RecyclerView.Adapter<Re
                 holder.clientCancelReservationBtn.setEnabled(false);
                 holder.clientCancelReservationBtn.setClickable(false);
                 holder.userReservationStatusTextView.setText(ReservationStatus.CANCELED_BY_RESTAURANT.name());
+                Restaurant restaurant = restaurantViewModel.getRestaurant(reservation.restaurantEmail);
+                restaurantViewModel.updateRestaurantSeatsReserved(restaurant.email,
+                        restaurant.seatsReserved - Integer.parseInt(reservation.seatsRequested));
             });
         }
         holder.userPhoneNumber.setText(phoneNumber);

@@ -152,4 +152,28 @@ public class RestaurantRepository {
             return null;
         }
     }
+
+    public void updateRestaurantSeatsReserved(String email, String seats_reserved) {
+        try {
+            new updateRestaurantSeatsReservedAsyncTask(mRestaurantDao).execute(email, seats_reserved).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private static class updateRestaurantSeatsReservedAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private RestaurantDao mAsyncTaskDao;
+
+        updateRestaurantSeatsReservedAsyncTask(RestaurantDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.updateRestaurantSeatsReserved(params[0], Integer.parseInt(params[1]));
+            return null;
+        }
+    }
 }

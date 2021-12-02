@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,16 +16,12 @@ import android.widget.Toast;
 import lb.edu.aub.cmps297.reserva.Enums.ReservationStatus;
 import lb.edu.aub.cmps297.reserva.R;
 import lb.edu.aub.cmps297.reserva.StaticStorage;
-import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 import lb.edu.aub.cmps297.reserva.database.Entities.LoggedInUser;
-import lb.edu.aub.cmps297.reserva.database.Entities.Reservation;
 import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.LoggedInUserViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.ReservationViewModel;
 import lb.edu.aub.cmps297.reserva.database.ViewModels.RestaurantViewModel;
-import lb.edu.aub.cmps297.reserva.models.Menu;
 import lb.edu.aub.cmps297.reserva.adapters.MenuAdapter;
-import lb.edu.aub.cmps297.reserva.adapters.RestaurantAdapter;
 
 public class RestaurantDetails extends AppCompatActivity {
     private ImageView restaurantImg;
@@ -34,7 +29,7 @@ public class RestaurantDetails extends AppCompatActivity {
     private TextView restaurantDescriptionText;
     private TextView restaurantPhoneNumberText;
     private TextView restaurantLocationText;
-    private TextView restaurantSeatsNumber;
+    private TextView restaurantSeatsToRequestNumber;
     private ImageButton restaurantArrowUp;
     private ImageButton restaurantArrowDown;
     private Button restaurantReserve;
@@ -58,14 +53,12 @@ public class RestaurantDetails extends AppCompatActivity {
 
         LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
 
-//        restaurant = StaticStorage.restaurants.get(StaticStorage.restaurantChosen);
         restaurantImg = findViewById(R.id.idRestarauntDetialsImg);
         restaurantName = findViewById(R.id.idRestaurantDetailsName);
-//        restaurantViewMenu = findViewById(R.id.idRestaurantDetialsViewMenu);
         restaurantDescriptionText = findViewById(R.id.idRestaurantDetailsDescriptionText);
         restaurantPhoneNumberText = findViewById(R.id.idRestaurantDetialsPhoneNumberText);
         restaurantLocationText = findViewById(R.id.idRestaurantDetailsLocationText);
-        restaurantSeatsNumber = findViewById(R.id.idRestaurantDetailsSeatsNumber);
+        restaurantSeatsToRequestNumber = findViewById(R.id.idRestaurantDetailsSeatsToRequestNumber);
         restaurantArrowUp = findViewById(R.id.idRestaurantDetailsArrowUpBtn);
         restaurantArrowDown = findViewById(R.id.idRestaurantDetailsArrowDownBtn);
         restaurantReserve = findViewById(R.id.idRestaurantDetailsReserveBtn);
@@ -80,7 +73,7 @@ public class RestaurantDetails extends AppCompatActivity {
         restaurantPhoneNumberText.setText(chosenRestaurant.phoneNumber);
         restaurantLocationText.setText(chosenRestaurant.location);
 
-        restaurantSeatsNumber.setText("0");
+        restaurantSeatsToRequestNumber.setText("0");
 
 
 
@@ -90,19 +83,22 @@ public class RestaurantDetails extends AppCompatActivity {
         restaurantDetailsMenuRV.setAdapter(menuAdapter);
 
         restaurantArrowUp.setOnClickListener(view -> {
-            Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
+            Integer count = Integer.parseInt(restaurantSeatsToRequestNumber.getText().toString());
             count++;
-            restaurantSeatsNumber.setText(count.toString());
+            restaurantSeatsToRequestNumber.setText(count.toString());
             restaurantReserve.setEnabled(true);
         });
         restaurantArrowDown.setOnClickListener(view -> {
-            Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
-            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) > 0){
+            Integer count = Integer.parseInt(restaurantSeatsToRequestNumber.getText().toString());
+            if (Integer.parseInt(restaurantSeatsToRequestNumber.getText().toString()) > 0){
                 count--;
-                restaurantSeatsNumber.setText(count.toString());
+                restaurantSeatsToRequestNumber.setText(count.toString());
+                restaurantReserve.setEnabled(true);
+                restaurantReserve.setClickable(true);
             }
-            if (Integer.parseInt(restaurantSeatsNumber.getText().toString()) == 0) {
+            if (Integer.parseInt(restaurantSeatsToRequestNumber.getText().toString()) == 0) {
                 restaurantReserve.setEnabled(false);
+                restaurantReserve.setClickable(false);
             }
         });
         restaurantReserve.setOnClickListener(view -> {
@@ -110,7 +106,7 @@ public class RestaurantDetails extends AppCompatActivity {
                 restaurantArrowDown.setClickable(true);
                 restaurantArrowUp.setEnabled(true);
                 reservationViewModel.insert(loggedInUser.email, chosenRestaurant.email,
-                        restaurantSeatsNumber.getText().toString(), ReservationStatus.PENDING.name());
+                        restaurantSeatsToRequestNumber.getText().toString(), ReservationStatus.PENDING.name());
             Toast.makeText(RestaurantDetails.this,
                     "Successfully reserved, please check you reservations page.", Toast.LENGTH_LONG).show();
         });
