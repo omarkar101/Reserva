@@ -60,8 +60,6 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
     String filePath;
 
-    boolean imageAdded;
-
 
 
     @Override
@@ -95,6 +93,11 @@ public class RestaurantEditInfo extends AppCompatActivity {
         restaurantPhoneNumber.setText(restaurant.phoneNumber);
         restaurantLocation.setText(restaurant.location);
 
+        if(restaurant.profileUri != null){
+            File finalFile = new File(restaurant.profileUri);
+            restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        }
+
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);
         SaveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +109,7 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
 //                restaurantViewModel.updateRestaurantProfileImage(restaurant.email,imageInByte);
 
-                if(imageAdded){
+                if(selectedImageNew != null){
                     restaurantViewModel.updateRestaurantProfileImageUsingUri(restaurant.email, selectedImageNew);
                 }
                 finish();
@@ -147,9 +150,9 @@ public class RestaurantEditInfo extends AppCompatActivity {
 
             selectedImageNew = finalFile.getAbsolutePath();
 
+//            selectedImageNew = selectedImage.toString();
 
 
-            imageAdded = true;
 
 
 

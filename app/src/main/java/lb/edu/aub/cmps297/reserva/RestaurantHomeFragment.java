@@ -2,9 +2,12 @@ package lb.edu.aub.cmps297.reserva;
 
 import static android.provider.CalendarContract.CalendarCache.URI;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,6 +17,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -73,6 +78,9 @@ public class RestaurantHomeFragment extends Fragment {
 
     private RestaurantViewModel restaurantViewModel;
 
+    int PERMISSION_REQUEST_CODE = 100;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -113,12 +121,20 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantLocationText.setText(restaurant.location);
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
+//        getCameraPermission();
+
+//        try {
+//            Bitmap map = MediaStore.Images.Media.getBitmap(this.getContext().getContentResolver(), Uri.parse(restaurant.profileUri));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
 
 //        Log.d("kaka","from home "+ restaurant.profileUri);
 
 //        1 way
-//        File finalFile = new File(restaurant.profileUri);
-//        restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        File finalFile = new File(restaurant.profileUri);
+        restaurantImg.setImageURI(Uri.fromFile(finalFile));
 
 //        2 way
 //        Picasso.with(getContext()).load(finalFile).into(restaurantImg);
@@ -132,7 +148,7 @@ public class RestaurantHomeFragment extends Fragment {
 
 
 //        4 way
-//        restaurantImg.setImageBitmap(decodeSampledBitmapFromResource(restaurant.profileUri,10,10));
+//        restaurantImg.setImageBitmap(decodeSampledBitmapFromResource(restaurant.profileUri,100,100));
 
 
 //        5 way
@@ -250,6 +266,61 @@ public class RestaurantHomeFragment extends Fragment {
         return root;
     }
 
+//    public void getCameraPermission(){
+//        if (!checkPermission()) {
+//            requestPermission();
+//        }
+//    }
+//
+//    private boolean checkPermission(){
+//        int result = ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+//
+//        if (result == PackageManager.PERMISSION_GRANTED){
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+//
+//    private void requestPermission(){
+//
+//        ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+//        File finalFile = new File(restaurant.profileUri);
+//        Log.d("kaka", finalFile.toURI().toString());
+////        restaurantImg.setImageURI(Uri.parse(finalFile.toURI().toString()));
+//
+//        Bitmap myBitmap = BitmapFactory.decodeFile("//storage/emulated/0/Pictures/IMG_20211130_185737.jpg");
+//        restaurantImg.setImageBitmap(myBitmap);
+//    }
+//    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+//    private static String[] PERMISSIONS_STORAGE = {
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE
+//    };
+//
+//    /**
+//     * Checks if the app has permission to write to device storage
+//     *
+//     * If the app does not has permission then the user will be prompted to grant permissions
+//     *
+//     * @param activity
+//     */
+//    public static void verifyStoragePermissions(Activity activity) {
+//        // Check if we have write permission
+//        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            // We don't have permission so prompt the user
+//            ActivityCompat.requestPermissions(
+//                    activity,
+//                    PERMISSIONS_STORAGE,
+//                    REQUEST_EXTERNAL_STORAGE
+//            );
+//        }
+//    }
+
+
+
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
@@ -296,3 +367,5 @@ public class RestaurantHomeFragment extends Fragment {
 //        startActivity(intent);
 //    }
 }
+
+
