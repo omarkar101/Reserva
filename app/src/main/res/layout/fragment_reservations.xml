@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:paddingHorizontal="16dp">
 
             <LinearLayout
                 android:id="@+id/relative1"
@@ -26,15 +27,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingVertical="20dp">
+                android:layout_marginVertical="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginVertical="8dp"
                     android:fontFamily="sans-serif-light"
                     android:text="Reservations"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="24dp" />
 
@@ -43,10 +43,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginHorizontal="8dp"
                     android:backgroundTint="#92938E"
                     android:fontFamily="@font/montserrat_bold"
-                    android:paddingVertical="15dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginTop="10dp"
                     android:enabled="false"
                     android:text="Seats Remaining: 10"
                     android:textColor="@color/white" />
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="40dp">
+                android:layout_marginVertical="30dp">
 
                 <TextView
                     android:id="@+id/idRestaurantReservationsIncomingRequestsTextView"
@@ -67,18 +67,18 @@
                     android:layout_below="@+id/relative1"
                     android:fontFamily="sans-serif-light"
                     android:text="Incoming Requests:"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/idRVRestaurantIncomingRequests"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/idRestaurantReservationsIncomingRequestsTextView"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="23dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_alignBottom="@+id/idRestaurantReservationsIncomingRequestsTextView"/>
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="40dp">
+                android:layout_marginVertical="30dp">
 
                 <TextView
                     android:id="@+id/idRestaurantReservationsCurrentReservationsTextView"
@@ -96,6 +96,8 @@
                     android:layout_below="@+id/relative1"
                     android:fontFamily="sans-serif-light"
                     android:text="Current Reservations:"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -103,11 +105,9 @@
                     android:id="@+id/idRVRestaurantCurrentReservations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/idRestaurantReservationsCurrentReservationsTextView"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="23dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_alignBottom="@+id/idRestaurantReservationsCurrentReservationsTextView" />
 
             </LinearLayout>
         </LinearLayout>

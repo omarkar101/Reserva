@@ -13,76 +13,141 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/idUserIncomingRequestText"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Omar - omar@gmail.com"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:paddingVertical="10dp">
 
-                <TextView
-                    android:id="@+id/idUserIncomingRequestSeatsRequestedText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="seats requested: 5"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/idUserIncomingRequestPhoneNumberText"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestTextName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Client: "
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Omar - omar@gmail.com"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestTextSeatsNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Seats: "
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestSeatsRequestedText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="seats requested: 5"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestTextPhoneNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Mobile: "
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/idUserIncomingRequestPhoneNumberText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="88 - 777666"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/idUserIncomingRequestAcceptBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/holo_green_light"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Accept"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <Button
+                            android:id="@+id/idUserIncomingRequestRejectBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/holo_red_dark"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Reject"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="88 - 777666"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/idUserIncomingRequestAcceptBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/holo_green_light"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Accept"
-                    android:textColor="@color/white"
-                    android:textSize="12dp" />
-
-                <Button
-                    android:id="@+id/idUserIncomingRequestRejectBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/holo_red_dark"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Reject"
-                    android:textColor="@color/white"
-                    android:textSize="12dp" />
-            </LinearLayout>
 
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
