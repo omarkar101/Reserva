@@ -32,9 +32,6 @@ public interface RestaurantDao {
     @Query("UPDATE restaurants SET seats_max_capacity=:seatsMaxCapacity where email=:email")
     void updateRestaurantSeatsNumber(String email,int seatsMaxCapacity);
 
-    @Query("UPDATE restaurants SET profile_image=:profileImage where email=:email")
-    void updateRestaurantProfileImage(String email,byte[] profileImage);
-
     @Query("UPDATE restaurants SET profile_uri=:profileImagePath where email=:email")
     void updateRestaurantProfileImageUsingUri(String email, String profileImagePath);
 }

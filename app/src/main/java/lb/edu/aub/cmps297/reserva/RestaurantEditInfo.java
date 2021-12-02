@@ -97,6 +97,9 @@ public class RestaurantEditInfo extends AppCompatActivity {
             File finalFile = new File(restaurant.profileUri);
             restaurantImg.setImageURI(Uri.fromFile(finalFile));
         }
+        else{
+            restaurantImg.setImageResource(R.drawable.profile);
+        }
 
 
         SaveChangesBtn = findViewById(R.id.idRestaurantEditInfoSaveChangesBtn);

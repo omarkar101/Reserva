@@ -156,39 +156,6 @@ public class RestaurantRepository {
         }
     }
 
-    public void updateRestaurantProfileImage(String email,byte[] profileImage) {
-        try {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email, new String(profileImage, StandardCharsets.UTF_8)).get();
-//            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                new updateRestaurantProfileImageAsyncTask(mRestaurantDao).execute(email.getBytes(StandardCharsets.UTF_8), profileImage).get();
-            }
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    private static class updateRestaurantProfileImageAsyncTask extends AsyncTask<byte[], Void, Void> {
-
-        private RestaurantDao mAsyncTaskDao;
-
-        updateRestaurantProfileImageAsyncTask(RestaurantDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(byte [] ... params) {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                mAsyncTaskDao.updateRestaurantProfileImage(params[0],params[1].getBytes(StandardCharsets.UTF_8));
-//            }
-            mAsyncTaskDao.updateRestaurantProfileImage(String.valueOf(params[0]),params[1]);
-            return null;
-        }
-
-    }
 
     public void updateRestaurantProfileImageUsingUri(String email,String profileImagePath) {
         try {

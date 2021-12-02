@@ -78,9 +78,6 @@ public class RestaurantHomeFragment extends Fragment {
 
     private RestaurantViewModel restaurantViewModel;
 
-    int PERMISSION_REQUEST_CODE = 100;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,125 +118,14 @@ public class RestaurantHomeFragment extends Fragment {
         restaurantLocationText.setText(restaurant.location);
         restaurantSeatsNumber.setText(Integer.valueOf(restaurant.seatsMaxCapacity).toString());
 
-//        getCameraPermission();
 
-//        try {
-//            Bitmap map = MediaStore.Images.Media.getBitmap(this.getContext().getContentResolver(), Uri.parse(restaurant.profileUri));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        Log.d("kaka","from home "+ restaurant.profileUri);
 
 //        1 way
-        File finalFile = new File(restaurant.profileUri);
-        restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        if (restaurant.profileUri != null){
+            File finalFile = new File(restaurant.profileUri);
+            restaurantImg.setImageURI(Uri.fromFile(finalFile));
+        }
 
-//        2 way
-//        Picasso.with(getContext()).load(finalFile).into(restaurantImg);
-
-//        3 way
-//        if(finalFile.exists()){
-//
-//            Bitmap myBitmap = BitmapFactory.decodeFile(restaurant.profileUri);
-//            restaurantImg.setImageBitmap(myBitmap);
-//        }
-
-
-//        4 way
-//        restaurantImg.setImageBitmap(decodeSampledBitmapFromResource(restaurant.profileUri,100,100));
-
-
-//        5 way
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            byte[] decodedBytes = Base64.getDecoder().decode(restaurant.profileUri);
-//            Bitmap bmp = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-//            restaurantImg.setImageBitmap(Bitmap.createScaledBitmap(bmp, restaurantImg.getWidth(), restaurantImg.getHeight(), false));
-//        }
-
-
-
-//        6 way
-//        if (restaurant.profileImage != null && restaurant.profileImage.length > 0){
-//
-//            Bitmap bmp = BitmapFactory.decodeByteArray(restaurant.profileImage, 0, restaurant.profileImage.length);
-//            restaurantImg.setImageBitmap(Bitmap.createScaledBitmap(bmp, restaurantImg.getWidth(), restaurantImg.getHeight(), false));
-//
-//            if (bmp != null){
-//
-//            }
-//        }
-
-//        7 way
-//        java.net.URI uri = null;
-//        try {
-//            uri = new URI(restaurant.profileUri);
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//        File finalFile = new File(restaurant.profileUri);
-//        InputStream in = null;
-//        try {
-//            in = uri.toURL().openStream();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        BufferedInputStream bis = new BufferedInputStream(in,1024*8);
-//        ByteArrayOutputStream out = new ByteArrayOutputStream();
-//
-//        int len=0;
-//        byte[] buffer = new byte[1024];
-//        while(true){
-//            try {
-//                if (!((len = bis.read(buffer)) != -1)) break;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            out.write(buffer, 0, len);
-//        }
-//        try {
-//            out.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            bis.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        byte[] data = out.toByteArray();
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-//        restaurantImg.setImageBitmap(bitmap);
-
-//        8 way
-//        File finalFile = new File(restaurant.profileUri);
-//        Bitmap bitmap = null;
-//
-//        final Cursor cursor = this.getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                null, null, null, null);
-//        if (cursor.moveToFirst()) {
-//
-//            if (Build.VERSION.SDK_INT >= 29) {
-//                // You can replace '0' by 'cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)'
-//                // Note that now, you read the column '_ID' and not the column 'DATA'
-//                Uri imageUri= ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getInt(0));
-//
-//                // now that you have the media URI, you can decode it to a bitmap
-//                try (ParcelFileDescriptor pfd = this.getContext().getContentResolver().openFileDescriptor(Uri.fromFile(finalFile), "r")) {
-//                    if (pfd != null) {
-//                        bitmap = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
-//                    }
-//                } catch (IOException ex) {
-//
-//                }
-//            } else {
-//                // Repeat the code you already are using
-//            }
-//        }
-//        restaurantImg.setImageBitmap(bitmap);
 
         restaurantSaveChanges.setOnClickListener(view -> {
             restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email, Integer.parseInt(restaurantSeatsNumber.getText().toString()));
@@ -266,106 +152,6 @@ public class RestaurantHomeFragment extends Fragment {
         return root;
     }
 
-//    public void getCameraPermission(){
-//        if (!checkPermission()) {
-//            requestPermission();
-//        }
-//    }
-//
-//    private boolean checkPermission(){
-//        int result = ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.MANAGE_EXTERNAL_STORAGE);
-//
-//        if (result == PackageManager.PERMISSION_GRANTED){
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    private void requestPermission(){
-//
-//        ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-//        File finalFile = new File(restaurant.profileUri);
-//        Log.d("kaka", finalFile.toURI().toString());
-////        restaurantImg.setImageURI(Uri.parse(finalFile.toURI().toString()));
-//
-//        Bitmap myBitmap = BitmapFactory.decodeFile("//storage/emulated/0/Pictures/IMG_20211130_185737.jpg");
-//        restaurantImg.setImageBitmap(myBitmap);
-//    }
-//    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-//    private static String[] PERMISSIONS_STORAGE = {
-//            Manifest.permission.READ_EXTERNAL_STORAGE,
-//            Manifest.permission.WRITE_EXTERNAL_STORAGE
-//    };
-//
-//    /**
-//     * Checks if the app has permission to write to device storage
-//     *
-//     * If the app does not has permission then the user will be prompted to grant permissions
-//     *
-//     * @param activity
-//     */
-//    public static void verifyStoragePermissions(Activity activity) {
-//        // Check if we have write permission
-//        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//
-//        if (permission != PackageManager.PERMISSION_GRANTED) {
-//            // We don't have permission so prompt the user
-//            ActivityCompat.requestPermissions(
-//                    activity,
-//                    PERMISSIONS_STORAGE,
-//                    REQUEST_EXTERNAL_STORAGE
-//            );
-//        }
-//    }
-
-
-
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) >= reqHeight
-                    && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-    public static Bitmap decodeSampledBitmapFromResource(String path,
-                                                         int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeFile(path, options);
-    }
-
-
-//    @Override
-//    public void onClick(View v) {
-//        Intent intent = new Intent(this.getContext(), RestaurantEditInfo.class);
-//        startActivity(intent);
-//    }
 }
 
 
