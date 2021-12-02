@@ -18,7 +18,7 @@ import lb.edu.aub.cmps297.reserva.database.Entities.Restaurant;
 import lb.edu.aub.cmps297.reserva.database.Entities.Client;
 
 @Database(entities = {Client.class, Restaurant.class,
-        LoggedInUser.class, FavoriteRestaurantsByClients.class, Reservation.class}, version = 7)
+        LoggedInUser.class, FavoriteRestaurantsByClients.class, Reservation.class}, version = 10)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ClientDao userDao();
     public abstract RestaurantDao restaurantDao();

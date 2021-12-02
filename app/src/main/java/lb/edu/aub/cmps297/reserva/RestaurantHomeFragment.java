@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.BufferedInputStream;
@@ -73,7 +74,6 @@ public class RestaurantHomeFragment extends Fragment {
     private ImageButton restaurantArrowDown;
     private Button restaurantSaveChanges;
 
-
     private LoggedInUserViewModel loggedInUserViewModel;
 
     private RestaurantViewModel restaurantViewModel;
@@ -84,12 +84,6 @@ public class RestaurantHomeFragment extends Fragment {
         binding = FragmentRestaurantHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-        ArrayList<Integer> menuImgs = new ArrayList<Integer>();
-        menuImgs.add(R.drawable.menu1);
-        menuImgs.add(R.drawable.menu2);
-
-        Menu menu = new Menu(menuImgs);
         loggedInUserViewModel = new ViewModelProvider(this).get(LoggedInUserViewModel.class);
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
         LoggedInUser loggedInUser = loggedInUserViewModel.getUser();
@@ -97,7 +91,6 @@ public class RestaurantHomeFragment extends Fragment {
 
         restaurant = restaurantViewModel.getRestaurant(loggedInUser.email);
         if(restaurant == null) return root;
-
 
         restaurantImg = root.findViewById(R.id.idRestarauntHomeImg);
         restaurantName = root.findViewById(R.id.idRestaurantHomeName);
@@ -120,6 +113,10 @@ public class RestaurantHomeFragment extends Fragment {
 
 
 
+        restaurantSaveChanges.setOnClickListener(view -> {
+            restaurantViewModel.updateRestaurantMaxSeatsNumber(restaurant.email, Integer.parseInt(restaurantSeatsNumber.getText().toString()));
+            Toast.makeText(RestaurantHomeFragment.this.getContext(), "Saved Changes!", Toast.LENGTH_LONG).show();
+        });
 //        1 way
         if (restaurant.profileUri != null){
             File finalFile = new File(restaurant.profileUri);
@@ -129,17 +126,11 @@ public class RestaurantHomeFragment extends Fragment {
             restaurantImg.setImageResource(R.drawable.profile);
         }
 
-
-        restaurantSaveChanges.setOnClickListener(view -> {
-            restaurantViewModel.updateRestaurantSeatsNumber(restaurant.email, Integer.parseInt(restaurantSeatsNumber.getText().toString()));
-
-        });
         restaurantArrowUp.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
             count++;
             restaurantSeatsNumber.setText(count.toString());
             restaurantSaveChanges.setEnabled(true);
-
         });
         restaurantArrowDown.setOnClickListener(view -> {
             Integer count = Integer.parseInt(restaurantSeatsNumber.getText().toString());
@@ -152,10 +143,6 @@ public class RestaurantHomeFragment extends Fragment {
                 restaurantSaveChanges.setEnabled(false);
             }
         });
-
         return root;
     }
-
 }
-
-

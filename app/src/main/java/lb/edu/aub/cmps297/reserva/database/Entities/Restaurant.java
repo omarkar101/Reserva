@@ -28,8 +28,8 @@ public class Restaurant {
     @ColumnInfo(name = "location")
     public String location;
 
-    @ColumnInfo(name = "seats_available")
-    public int seatsAvailable;
+    @ColumnInfo(name = "seats_reserved")
+    public int seatsReserved;
 
     @ColumnInfo(name = "seats_max_capacity")
     public int seatsMaxCapacity;
@@ -51,7 +51,7 @@ public class Restaurant {
         this.password = password;
         this.email = email;
         seatsMaxCapacity = 0;
-        seatsAvailable = 0;
+        seatsReserved = 0;
         description = "Description of your restuarant goes here. To edit, please press the Edit Info button";
         location = "Location of your restuarant goes here. To edit, please press the Edit Info button";
         phoneNumber = "Phone number of your restuarant goes here. To edit, please press the Edit Info button";
